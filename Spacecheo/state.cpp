@@ -9,17 +9,17 @@ State::State(StateStack& mystack, Context context)
 
 void requestStackPush(States::ID stateID)
 {
-    mStack.pushState(stateID);
+    mStack->pushState(stateID);
 }
 
 void requestStackPop()
 {
-    mStack.popState();
+    mStack->popState();
 }
 
 void requestStateClear()
 {
-    mStack.clearState();
+    mStack->clearStates();
 }
 
 Context getContext() const

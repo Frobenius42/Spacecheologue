@@ -31,7 +31,7 @@ class StateStack : private sf::NonCopyable
         private:
         struct PendingChange
         {
-            ...
+            PendingChange(Action action, States::ID stateID);
             Action action;
             States::ID stateID;
         };

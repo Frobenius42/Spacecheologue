@@ -2,6 +2,15 @@
 #include <functional>
 #include <iostream>
 
+StateStack::(State::Context context)
+: mStack()
+, mPendingList()
+, mContext(context)
+, mFactories()
+{
+
+}
+
 State::Ptr StateStack::createState(States::ID stateID)
 {
     auto found = mFactories.find(stateID);
@@ -58,7 +67,7 @@ void StateStack::applyPendingChanges()
 
 void StateStack::pushState(States::ID stateID)
 {
-    PendingChange change({Push, stateID});
+    PendingChange change(Push, stateID);
     mPendingList.push_back(change);
 }
 
@@ -66,17 +75,17 @@ void StateStack::popState()
 {
     if (isEmpty())
         return;
-    PendingChange change({Pop});
+    PendingChange change(Pop);
     mPendingList.push_back(change);
 }
 
 void StateStack::clearStates()
 {
-    PendingChange change({Clear});
+    PendingChange change(Clear);
     mPendingList.push_back(change);
 }
 
 bool StateStack::isEmpty() const
 {
-    return mStack.isEmpty();
+    return mStack.empty();
 }

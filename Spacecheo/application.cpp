@@ -12,15 +12,16 @@ Application::Application(State::Context context)
 void Application::registerStates()
 {
     mStateStack.registerState<TitleState>(States::Title);
-    mStateStack.registerState<MenuState>(States::Menu);
+    //mStateStack.registerState<MenuState>(States::Menu);
     mStateStack.registerState<GameState>(States::Game);
-    mStateStack.registerState<PauseState>(States::Pause);
-    mStateStack.registerState<SpeechState>(States::Speech);
+    //mStateStack.registerState<PauseState>(States::Pause);
+    //mStateStack.registerState<SpeechState>(States::Speech);
 }
 
 void Application::processInput()
 {
-    while(mWindow.pollEvent(event))
+    sf::Event event;
+    while(mWindow->pollEvent(event))
     {
         mStateStack.handleEvent(event);
     }
@@ -33,17 +34,20 @@ void Application::update(sf::Time dt)
 
 void Application::render()
 {
-    mStateStack.draw());
+    mStateStack.draw();
 }
 
 int Application::run()
 {
+    sf::Clock clock;
+    sf::Time dt=clock.restart();
     while(!mStateStack.isEmpty())
     {
+        dt = clock.getElapsedTime();
         processInput();
-        update();
+        update(dt);
         render();
     }
-    mWindow.close();
+    mWindow->close();
     return 0;
 }

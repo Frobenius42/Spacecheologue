@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include "statestack.hpp"
 #include "cpp_std_11.hpp"
+#include "player.hpp"
+#include "textureholder.hpp"
+#include "font.hpp"
 
 namespace States
 {
