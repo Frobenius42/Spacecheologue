@@ -12,12 +12,14 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics-d" />
 					<Add library="sfml-window-d" />
 					<Add library="sfml-system-d" />
+					<Add library="sfml-audio-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -37,10 +39,13 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add directory="C:/Users/Adrien/Downloads/SFML-2.3.1-windows-gcc-4.8.1-tdm-32-bit/SFML-2.3.1/include" />
+			<Add directory="C:/Users/Adrien/Documents/Box2D-master/Box2D-master/Box2D" />
 		</Compiler>
 		<Linker>
+			<Add option="-lBox2D" />
 			<Add library="mingw32" />
 			<Add library="user32" />
 			<Add library="gdi32" />
@@ -48,8 +53,26 @@
 			<Add library="dxguid" />
 			<Add directory="C:/Users/Adrien/Downloads/SFML-2.3.1-windows-gcc-4.8.1-tdm-32-bit/SFML-2.3.1/lib" />
 		</Linker>
+		<Unit filename="application.cpp" />
+		<Unit filename="application.hpp" />
 		<Unit filename="cb.bmp" />
+		<Unit filename="cpp_std_11.hpp" />
+		<Unit filename="font.hpp" />
+		<Unit filename="gamestate.cpp" />
+		<Unit filename="gamestate.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="player.cpp" />
+		<Unit filename="player.hpp" />
+		<Unit filename="ressourceholder.hpp" />
+		<Unit filename="state.cpp" />
+		<Unit filename="state.hpp" />
+		<Unit filename="statestack.cpp" />
+		<Unit filename="statestack.hpp" />
+		<Unit filename="textureholder.hpp" />
+		<Unit filename="titlestate.cpp" />
+		<Unit filename="titlestate.hpp" />
+		<Unit filename="world.cpp" />
+		<Unit filename="world.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

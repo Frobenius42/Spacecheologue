@@ -15,7 +15,7 @@ class StateStack : private sf::NonCopyable
             Clear,
         };
     public:
-        explicit StateStack(State::Context context);
+        StateStack(State::Context context);
         template <typename T>
         void registerState(States::ID stateID);
         void update(sf::Time dt);
@@ -28,10 +28,10 @@ class StateStack : private sf::NonCopyable
     private:
         State::Ptr createState(States::ID stateID);
         void applyPendingChanges();
-        private:
+    private:
         struct PendingChange
         {
-            PendingChange(Action action, States::ID stateID);
+
             Action action;
             States::ID stateID;
         };

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1385316878 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\main.cpp
+1446423061 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\main.cpp
 	<SFML/Graphics.hpp>
 
 1439814084 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\graphics.hpp
@@ -379,4 +379,242 @@
 	<SFML/System/String.hpp>
 	<string>
 	<vector>
+
+1446395083 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\application.cpp
+	"application.hpp"
+	"titlestate.hpp"
+	"gamestate.hpp"
+
+1446396851 c:\users\adrien\documents\github\spacecheologue\spacecheo\application.hpp
+	"statestack.hpp"
+
+1446469992 c:\users\adrien\documents\github\spacecheologue\spacecheo\statestack.hpp
+	"state.hpp"
+	<map>
+	<vector>
+	"cpp_std_11.hpp"
+	<SFML/System.hpp>
+
+1446424767 c:\users\adrien\documents\github\spacecheologue\spacecheo\state.hpp
+	<map>
+	<vector>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"cpp_std_11.hpp"
+	"player.hpp"
+	"textureholder.hpp"
+	"font.hpp"
+
+1440256068 c:\users\adrien\documents\github\spacecheologue\spacecheo\cpp_std_11.hpp
+	<memory>
+	<type_traits>
+
+1446394697 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
+
+1446396136 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
+	"ressourceholder.hpp"
+
+1446396038 c:\users\adrien\documents\github\spacecheologue\spacecheo\ressourceholder.hpp
+	<map>
+	"cpp_std_11.hpp"
+
+1446396204 c:\users\adrien\documents\github\spacecheologue\spacecheo\font.hpp
+	"ressourceholder.hpp"
+
+1446424701 c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.hpp
+	<SFML/Graphics.hpp>
+	"state.hpp"
+
+1446468162 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
+	"state.hpp"
+	"world.hpp"
+
+1446397728 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+	<Box2D/Box2D.h>
+	<vector>
+	<SFML/Graphics.hpp>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\box2d.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Common/b2Draw.h>
+	<Box2D/Common/b2Timer.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2settings.h
+	<stddef.h>
+	<assert.h>
+	<float.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2draw.h
+	<Box2D/Common/b2Math.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2math.h
+	<Box2D/Common/b2Settings.h>
+	<math.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2timer.h
+	<Box2D/Common/b2Settings.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\shapes\b2circleshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\shapes\b2shape.h
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2blockallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\b2collision.h
+	<Box2D/Common/b2Math.h>
+	<limits.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\shapes\b2edgeshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\shapes\b2chainshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\shapes\b2polygonshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\b2broadphase.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<algorithm>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\b2dynamictree.h
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Common/b2GrowableStack.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2growablestack.h
+	<Box2D/Common/b2Settings.h>
+	<string.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\b2distance.h
+	<Box2D/Common/b2Math.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\collision\b2timeofimpact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Distance.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\b2body.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<memory>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\b2fixture.h
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\b2worldcallbacks.h
+	<Box2D/Common/b2Settings.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\b2timestep.h
+	<Box2D/Common/b2Math.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\b2world.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Dynamics/b2ContactManager.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\common\b2stackallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\b2contactmanager.h
+	<Box2D/Collision/b2BroadPhase.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\contacts\b2contact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<Box2D/Dynamics/b2Fixture.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2distancejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2joint.h
+	<Box2D/Common/b2Math.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2frictionjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2gearjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2motorjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2mousejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2prismaticjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2pulleyjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2revolutejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2ropejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2weldjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2wheeljoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1446394697 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
+	"player.hpp"
+
+1446468715 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+	"gamestate.hpp"
+
+1446468715 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\state.cpp
+	"state.hpp"
+	"statestack.hpp"
+
+1446468421 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\statestack.cpp
+	"statestack.hpp"
+	<functional>
+	<iostream>
+	<assert.h>
+
+1446424730 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
+	"titlestate.hpp"
+
+1446424842 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+	"world.hpp"
 

@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include "state.hpp"
 
 class TitleState : public State
 {

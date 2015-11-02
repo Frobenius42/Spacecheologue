@@ -1,7 +1,7 @@
 #include "world.hpp"
 
 World::World()
-: mWorld()
+: mWorld(b2Vec2{0.,10.})
 , mPlayerBody()
 , mListeBody()
 , mGroundBody()

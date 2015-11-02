@@ -1,7 +1,8 @@
 #include "titlestate.hpp"
 
 TitleState::TitleState(StateStack& mystack, Context context)
-: mBackgroundSprite()
+: State(mystack, context)
+, mBackgroundSprite()
 , mText()
 , mShowText(true)
 , mTextEffectTime()

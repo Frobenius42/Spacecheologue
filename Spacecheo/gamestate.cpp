@@ -1,8 +1,14 @@
 #include "gamestate.hpp"
 
 GameState::GameState(StateStack& mystack, Context context)
-: mWorld()
+: State(mystack, context)
+, mWorld()
 , mPlayer(context.player)
+{
+
+}
+
+GameState::~GameState()
 {
 
 }

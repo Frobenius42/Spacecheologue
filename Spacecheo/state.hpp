@@ -3,11 +3,13 @@
 #include <vector>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include "statestack.hpp"
+
 #include "cpp_std_11.hpp"
 #include "player.hpp"
 #include "textureholder.hpp"
 #include "font.hpp"
+
+class StateStack;
 
 namespace States
 {
@@ -37,7 +39,7 @@ class State
         void requestStackPop();
         void requestStateClear();
         Context getContext() const;
-    private:
+    protected:
         StateStack* mStack;
         Context mContext;
 };

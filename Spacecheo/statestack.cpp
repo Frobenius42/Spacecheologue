@@ -1,8 +1,9 @@
 #include "statestack.hpp"
 #include <functional>
 #include <iostream>
+#include <assert.h>
 
-StateStack::(State::Context context)
+StateStack::StateStack(State::Context context)
 : mStack()
 , mPendingList()
 , mContext(context)
@@ -32,7 +33,7 @@ void StateStack::update(sf::Time dt)
 {
     for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
     {
-        if (!(*itr)->Update(dt))
+        if (!(*itr)->update(dt))
             return;
     }
 }
@@ -41,7 +42,7 @@ void StateStack::draw()
 {
     for (auto itr = mStack.rend(); itr != mStack.rbegin(); --itr)
     {
-        (*itr)->Draw();
+        (*itr)->draw();
     }
 }
 
@@ -67,7 +68,9 @@ void StateStack::applyPendingChanges()
 
 void StateStack::pushState(States::ID stateID)
 {
-    PendingChange change(Push, stateID);
+    struct PendingChange change;
+    change.action = Push;
+    change.stateID = stateID;
     mPendingList.push_back(change);
 }
 
@@ -75,13 +78,17 @@ void StateStack::popState()
 {
     if (isEmpty())
         return;
-    PendingChange change(Pop);
+    struct PendingChange change;
+    change.action = Pop;
+    change.stateID = States::Title;
     mPendingList.push_back(change);
 }
 
 void StateStack::clearStates()
 {
-    PendingChange change(Clear);
+    struct PendingChange change;
+    change.action = Clear;
+    change.stateID = States::Title;
     mPendingList.push_back(change);
 }
 
