@@ -1,12 +1,16 @@
 #include "application.hpp"
 #include "titlestate.hpp"
 #include "gamestate.hpp"
+#include <iostream>
 
 Application::Application(State::Context context)
 : mStateStack(context)
 , mWindow(context.window)
 {
-    mStateStack.pushState(States::Title);
+    registerStates();
+    mStateStack.pushState(States::Game);
+    sf::Event event;
+    mStateStack.handleEvent(event);
 }
 
 void Application::registerStates()

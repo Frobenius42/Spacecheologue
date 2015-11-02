@@ -1,5 +1,6 @@
 #pragma once
 #include "ressourceholder.hpp"
+#include <SFML/Graphics.hpp>
 
 namespace Font
 {
@@ -8,5 +9,6 @@ namespace Font
 
 class FontHolder: public ResourceHolder<sf::Font, Font::ID>
 {
-    FontHolder();
+    public:
+        FontHolder();
 };

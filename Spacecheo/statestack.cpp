@@ -40,7 +40,7 @@ void StateStack::update(sf::Time dt)
 
 void StateStack::draw()
 {
-    for (auto itr = mStack.rend(); itr != mStack.rbegin(); --itr)
+    for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
     {
         (*itr)->draw();
     }

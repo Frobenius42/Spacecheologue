@@ -45,18 +45,19 @@
 			<Add directory="C:/Users/Adrien/Documents/Box2D-master/Box2D-master/Box2D" />
 		</Compiler>
 		<Linker>
-			<Add option="-lBox2D" />
 			<Add library="mingw32" />
 			<Add library="user32" />
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="dxguid" />
+			<Add library="C:\Users\Adrien\Documents\GitHub\Spacecheologue\Spacecheo\libBox2D.a" />
 			<Add directory="C:/Users/Adrien/Downloads/SFML-2.3.1-windows-gcc-4.8.1-tdm-32-bit/SFML-2.3.1/lib" />
 		</Linker>
 		<Unit filename="application.cpp" />
 		<Unit filename="application.hpp" />
 		<Unit filename="cb.bmp" />
 		<Unit filename="cpp_std_11.hpp" />
+		<Unit filename="font.cpp" />
 		<Unit filename="font.hpp" />
 		<Unit filename="gamestate.cpp" />
 		<Unit filename="gamestate.hpp" />
@@ -68,6 +69,7 @@
 		<Unit filename="state.hpp" />
 		<Unit filename="statestack.cpp" />
 		<Unit filename="statestack.hpp" />
+		<Unit filename="textureholder.cpp" />
 		<Unit filename="textureholder.hpp" />
 		<Unit filename="titlestate.cpp" />
 		<Unit filename="titlestate.hpp" />

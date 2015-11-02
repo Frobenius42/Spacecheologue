@@ -11,6 +11,8 @@ class GameState : public State
         virtual bool update(sf::Time dt);
         virtual bool handleEvent(const sf::Event& event);
     private:
-        World* mWorld;
+        World mWorld;
         Player* mPlayer;
+        sf::RectangleShape mGroundShape;
+        sf::RectangleShape mPlayerShape;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "ressourceholder.hpp"
+#include <SFML/Graphics.hpp>
 
 namespace Texture
 {
@@ -8,5 +9,6 @@ namespace Texture
 
 class TextureHolder: public ResourceHolder<sf::Texture, Texture::ID>
 {
-    TextureHolder();
+    public:
+        TextureHolder();
 };

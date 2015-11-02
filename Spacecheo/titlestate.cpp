@@ -15,7 +15,7 @@ bool TitleState::handleEvent(const sf::Event& event)
     if (event.type == sf::Event::KeyPressed)
     {
         requestStackPop();
-        requestStackPush(States::Menu);
+        requestStackPush(States::Game);
     }
     return true;
 }
@@ -33,7 +33,7 @@ bool TitleState::update(sf::Time dt)
 
 void TitleState::draw()
 {
-    mContext.window->draw(mBackgroundSprite);
-    if (mShowText)
-        mContext.window->draw(mText);
+    //mContext.window->draw(mBackgroundSprite);
+    //if (mShowText)
+    //    mContext.window->draw(mText);
 }
