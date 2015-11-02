@@ -15,4 +15,5 @@ class GameState : public State
         Player* mPlayer;
         sf::RectangleShape mGroundShape;
         sf::RectangleShape mPlayerShape;
+        sf::RectangleShape mTestShape;
 };

@@ -6,9 +6,10 @@ World::World()
 , mPlayerBody()
 , mListeBody()
 , mGroundBody()
+, mTestBody()
 {
     b2BodyDef groundBodyDef;  // def du sol
-	groundBodyDef.position.Set(5.0f, 4.f);
+	groundBodyDef.position.Set(5.0f, 6.f);
 	mGroundBody = mWorld.CreateBody(&groundBodyDef);
 	b2PolygonShape groundBox;
 	groundBox.SetAsBox(5.0f, 1.f);
@@ -20,16 +21,24 @@ World::World()
 	mBodyDef.position.Set(1.f, 1.f);
 
 	b2PolygonShape mBox;
-	mBox.SetAsBox(1.f, 1.f);
+	mBox.SetAsBox(0.2f, 0.2f);
 
 	b2FixtureDef mFixtureDef;
 	mFixtureDef.shape = &mBox;
-	mFixtureDef.density = 1.0f;
-	mFixtureDef.friction = 0.0f;
+	mFixtureDef.density = 0.0f;
+	mFixtureDef.friction = 0.f;
 	mFixtureDef.restitution = 0.f;
 
 	mPlayerBody = mWorld.CreateBody(&mBodyDef);
     mPlayerBody->CreateFixture(&mFixtureDef);
+
+    mFixtureDef.friction = 1.0f;
+    mBodyDef.position.Set(4.f, 1.f);
+    mTestBody = mWorld.CreateBody(&mBodyDef);
+    b2MassData data;
+    data.mass = 1000.;
+    mTestBody->SetMassData(&data);
+    mTestBody->CreateFixture(&mFixtureDef);
 }
 
 std::vector<b2Body*> World::getListeBody()
@@ -40,6 +49,11 @@ std::vector<b2Body*> World::getListeBody()
 b2Body* World::getPlayerBody()
 {
     return mPlayerBody;
+}
+
+b2Body* World::getTestBody()
+{
+    return mTestBody;
 }
 
 void World::updateWorld()

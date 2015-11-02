@@ -10,12 +10,14 @@ class World
         World();
         std::vector<b2Body*> getListeBody();
         b2Body* getPlayerBody();
+        b2Body* getTestBody();
         void updateWorld();
     private:
         b2World mWorld;
         b2Body* mPlayerBody;
         std::vector<b2Body*> mListeBody;
         b2Body* mGroundBody;
+        b2Body* mTestBody;
 };
 
 
