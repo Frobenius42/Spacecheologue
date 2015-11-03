@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include "cpp_std_11.hpp"
+#include <assert.h>
 
 template <typename Resource, typename Identifier>
 class ResourceHolder

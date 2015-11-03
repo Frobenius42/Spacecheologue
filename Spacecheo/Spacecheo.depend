@@ -417,13 +417,14 @@
 
 1446394697 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
 
-1446473814 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
+1446588933 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
 	"ressourceholder.hpp"
 	<SFML/Graphics.hpp>
 
-1446396038 c:\users\adrien\documents\github\spacecheologue\spacecheo\ressourceholder.hpp
+1446589216 c:\users\adrien\documents\github\spacecheologue\spacecheo\ressourceholder.hpp
 	<map>
 	"cpp_std_11.hpp"
+	<assert.h>
 
 1446473897 c:\users\adrien\documents\github\spacecheologue\spacecheo\font.hpp
 	"ressourceholder.hpp"
@@ -433,14 +434,16 @@
 	<SFML/Graphics.hpp>
 	"state.hpp"
 
-1446547253 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
+1446591941 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
 	"state.hpp"
 	"world.hpp"
 
-1446580449 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+1446591957 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
 	<Box2D/Box2D.h>
 	<vector>
 	<SFML/Graphics.hpp>
+	"bloc.hpp"
+	"textureholder.hpp"
 
 1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\box2d.h
 	<Box2D/Common/b2Settings.h>
@@ -607,7 +610,7 @@
 1446394697 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
 	"player.hpp"
 
-1446580077 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+1446590253 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
 	"gamestate.hpp"
 	<iostream>
 
@@ -634,4 +637,11 @@
 
 1446473897 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\font.cpp
 	"font.hpp"
+
+1446591377 c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.hpp
+	<SFML/Graphics.hpp>
+	"textureholder.hpp"
+
+1446591392 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.cpp
+	"bloc.hpp"
 

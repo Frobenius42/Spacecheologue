@@ -4,7 +4,7 @@
 
 namespace Texture
 {
-    enum ID {};
+    enum ID {Sol, Mur, Plateforme};
 }
 
 class TextureHolder: public ResourceHolder<sf::Texture, Texture::ID>

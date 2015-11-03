@@ -2,22 +2,17 @@
 #include <iostream>
 #include <math.h>
 
-World::World()
+World::World(TextureHolder* textures)
 : mWorld(b2Vec2{0.,10.})
 , mPlayerBody()
-, mListeBody()
-, mGroundBody()
-, mTestBody()
+, mListeFixBody()
+, mListeDynamicBody()
+, mListeBloc()
 , mForceField(false)
 , mJump(false)
 , mJumpTime(0)
+, mTextureHolder(textures)
 {
-    b2BodyDef groundBodyDef;  // def du sol
-	groundBodyDef.position.Set(5.0f, 6.f);
-	mGroundBody = mWorld.CreateBody(&groundBodyDef);
-	b2PolygonShape groundBox;
-	groundBox.SetAsBox(5.0f, 1.f);
-	mGroundBody->CreateFixture(&groundBox, 0.0f);
 
     b2BodyDef mBodyDef; // def du joueur
     mBodyDef.type = b2_dynamicBody; // le joueur est un corps dynamique
@@ -35,19 +30,21 @@ World::World()
 
 	mPlayerBody = mWorld.CreateBody(&mBodyDef);
     mPlayerBody->CreateFixture(&mFixtureDef);
-
-    mFixtureDef.friction = 1.0f;
-    mBodyDef.position.Set(4.f, 1.f);
-    mTestBody = mWorld.CreateBody(&mBodyDef);
-    b2MassData data;
-    data.mass = 10.;
-    mTestBody->SetMassData(&data);
-    mTestBody->CreateFixture(&mFixtureDef);
 }
 
-std::vector<b2Body*> World::getListeBody()
+std::vector<b2Body*> World::getListeFixBody()
 {
-    return mListeBody;
+    return mListeFixBody;
+}
+
+std::vector<b2Body*> World::getListeDynamicBody()
+{
+    return mListeDynamicBody;
+}
+
+std::vector<Bloc*> World::getListeBloc()
+{
+    return mListeBloc;
 }
 
 b2Body* World::getPlayerBody()
@@ -55,25 +52,11 @@ b2Body* World::getPlayerBody()
     return mPlayerBody;
 }
 
-b2Body* World::getTestBody()
-{
-    return mTestBody;
-}
-
 void World::updateWorld()
 {
     if (mForceField)
     {
-        b2Vec2 mPlayerPos(mPlayerBody->GetPosition());
-        b2Vec2 mTestPos(mTestBody->GetPosition());
-        float dis(distance(mPlayerPos, mTestPos));
-        if (dis<2)
-        {
-            b2Vec2 impulse(mTestPos-mPlayerPos);
-            impulse.x = impulse.x/dis;
-            impulse.y = impulse.y/dis;
-            mTestBody->ApplyLinearImpulse(impulse, mTestBody->GetPosition(), true);
-        }
+
     }
     if (mJump && mJumpTime==0)
     {
@@ -112,4 +95,17 @@ void World::setJump(bool jump)
 bool World::getJump()
 {
     return mJump;
+}
+
+void World::createBloc(Bloc::type id, float x, float y)
+{
+    b2BodyDef blocBodyDef;
+	blocBodyDef.position.Set(x, y);
+   	b2Body* mBlocBody = mWorld.CreateBody(&blocBodyDef);
+	b2PolygonShape blocBox;
+	blocBox.SetAsBox(0.5f, 0.5f);
+	mBlocBody->CreateFixture(&blocBox, 0.0f);
+	mListeFixBody.push_back(mBlocBody);
+	Bloc bloc(id, mTextureHolder, sf::Vector2f{x,y});
+	mListeBloc.push_back(&bloc);
 }

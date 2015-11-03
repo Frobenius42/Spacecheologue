@@ -3,20 +3,13 @@
 
 GameState::GameState(StateStack& mystack, Context context)
 : State(mystack, context)
-, mWorld()
+, mWorld(context.textures)
 , mPlayer(context.player)
-, mGroundShape()
 , mPlayerShape()
-, mTestShape()
 , m_jumpTimeout(0)
 {
-    mGroundShape.setPosition(0., 500.);
-    mGroundShape.setSize({1000,200});
-    mGroundShape.setFillColor(sf::Color::Yellow);
     mPlayerShape.setSize({40,40});
     mPlayerShape.setFillColor(sf::Color::Green);
-    mTestShape.setSize({40,40});
-    mTestShape.setFillColor(sf::Color::Red);
 }
 
 
@@ -74,9 +67,6 @@ bool GameState::update(sf::Time dt)
     b2Vec2 pos(mWorld.getPlayerBody()->GetPosition());
     sf::Vector2f siz(mPlayerShape.getSize());
     mPlayerShape.setPosition(100*pos.x-siz.x/2., 100*pos.y-siz.y/2.);
-    pos = mWorld.getTestBody()->GetPosition();
-    siz = mTestShape.getSize();
-    mTestShape.setPosition(100*pos.x-siz.x/2., 100*pos.y-siz.y/2.);
     if (m_jumpTimeout>0)
         m_jumpTimeout--;
     return true;
@@ -86,7 +76,5 @@ void GameState::draw()
 {
     mContext.window->clear();
     mContext.window->draw(mPlayerShape);
-    mContext.window->draw(mTestShape);
-    mContext.window->draw(mGroundShape);
     mContext.window->display();
 }
