@@ -433,11 +433,11 @@
 	<SFML/Graphics.hpp>
 	"state.hpp"
 
-1446503537 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
+1446547253 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
 	"state.hpp"
 	"world.hpp"
 
-1446503537 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+1446580449 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
 	<Box2D/Box2D.h>
 	<vector>
 	<SFML/Graphics.hpp>
@@ -607,7 +607,7 @@
 1446394697 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
 	"player.hpp"
 
-1446503549 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+1446580077 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
 	"gamestate.hpp"
 	<iostream>
 
@@ -624,9 +624,10 @@
 1446474781 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
 	"titlestate.hpp"
 
-1446502223 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+1446580925 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
 	"world.hpp"
 	<iostream>
+	<math.h>
 
 1446473785 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.cpp
 	"textureholder.hpp"

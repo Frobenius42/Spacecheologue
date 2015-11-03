@@ -8,6 +8,7 @@ GameState::GameState(StateStack& mystack, Context context)
 , mGroundShape()
 , mPlayerShape()
 , mTestShape()
+, m_jumpTimeout(0)
 {
     mGroundShape.setPosition(0., 500.);
     mGroundShape.setSize({1000,200});
@@ -29,6 +30,22 @@ bool GameState::handleEvent(const sf::Event& event)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
         requestStackPop();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    {
+        mWorld.setForceField(true);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+    {
+        mWorld.setForceField(false);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        if (m_jumpTimeout == 0)
+        {
+            mWorld.setJump(!mWorld.getJump());
+            m_jumpTimeout = 15;
+        }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
@@ -60,6 +77,8 @@ bool GameState::update(sf::Time dt)
     pos = mWorld.getTestBody()->GetPosition();
     siz = mTestShape.getSize();
     mTestShape.setPosition(100*pos.x-siz.x/2., 100*pos.y-siz.y/2.);
+    if (m_jumpTimeout>0)
+        m_jumpTimeout--;
     return true;
 }
 

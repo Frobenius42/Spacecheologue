@@ -16,4 +16,5 @@ class GameState : public State
         sf::RectangleShape mGroundShape;
         sf::RectangleShape mPlayerShape;
         sf::RectangleShape mTestShape;
+        int m_jumpTimeout;
 };
