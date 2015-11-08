@@ -1,6 +1,8 @@
 #include "world.hpp"
 #include <iostream>
+#include <fstream>
 #include <math.h>
+#include "json.h"
 
 World::World(TextureHolder* textures)
 : mWorld(b2Vec2{0.,10.})
@@ -41,8 +43,8 @@ World::World(TextureHolder* textures)
     createBloc(Texture::Sol, 2., 4.);
     createBloc(Texture::Sol, 3., 4.);
     createBloc(Texture::Sol, 4., 4.);
-    createBloc(Texture::Plateforme, 3., 3.);
-    createBloc(Texture::Plateforme, 3., 2.);
+    createBloc(Texture::Plateforme, 3.5, 3.);
+    createBloc(Texture::Plateforme, 3.5, 2.);
     createBloc(Texture::Plateforme, 1., 3.);
     createBloc(Texture::Plateforme, 1., 2.);
 }
@@ -74,6 +76,27 @@ b2Body* World::getPlayerBody()
 
 void World::updateWorld()
 {
+    for (b2ContactEdge* ce = mPlayerBody->GetContactList(); ce; ce = ce->next)
+    {
+        if (ce->contact->IsTouching())
+        {
+            b2Vec2 impulse(mWorld.GetGravity());
+            impulse.y = -impulse.y/100;
+            mPlayerBody->ApplyLinearImpulse(impulse, mPlayerBody->GetWorldCenter(), true);
+        }
+    }
+    for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
+    {
+        for (b2ContactEdge* ce = mListeDynamicBody[i]->GetContactList(); ce; ce = ce->next)
+        {
+            if (ce->contact->IsTouching())
+            {
+                b2Vec2 impulse(mWorld.GetGravity());
+                impulse.y = -impulse.y/100;
+                mListeDynamicBody[i]->ApplyLinearImpulse(impulse, mListeDynamicBody[i]->GetWorldCenter(), true);
+            }
+        }
+    }
     if (mForceField)
     {
         for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
@@ -187,5 +210,23 @@ void World::createBloc(Texture::ID myid, float x, float y)
         mListeFixBody.push_back(mBlocBody);
         Bloc* bloc = new Bloc(myid, mBlocBody);
         mListeFixBloc.push_back(bloc);
+    }
+}
+
+void World::createWorld(std::string fileName, sf::Vector2f playerPos)
+{
+    std::ifstream file(fileName.c_str());
+    if (!file)
+    {
+        std::cerr << "Error: can't open file " << fileName << std::endl;
+        return;
+    }
+
+    Json::Value root;
+    Json::Reader reader;
+    if( !reader.parse(file, root, false) )
+    {
+        std::cout << "Error while reading level file:\n" << reader.getFormattedErrorMessages();
+        return;
     }
 }

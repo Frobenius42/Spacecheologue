@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "bloc.hpp"
 #include "textureholder.hpp"
+#include <string>
 
 class World
 {
@@ -22,6 +23,7 @@ class World
         void setJump(bool);
         bool getJump();
         void updateWorld();
+        void createWorld(std::string, sf::Vector2f);
     private:
         float distance(b2Vec2, b2Vec2);
         void createBloc(Texture::ID, float, float);

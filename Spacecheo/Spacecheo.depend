@@ -438,12 +438,13 @@
 	"state.hpp"
 	"world.hpp"
 
-1446831188 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+1447003298 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
 	<Box2D/Box2D.h>
 	<vector>
 	<SFML/Graphics.hpp>
 	"bloc.hpp"
 	"textureholder.hpp"
+	<string>
 
 1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\box2d.h
 	<Box2D/Common/b2Settings.h>
@@ -646,4 +647,45 @@
 1446827373 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.cpp
 	"bloc.hpp"
 	<iostream>
+
+1440458640 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\jsoncpp.cpp
+	"json/json.h"
+	<json/assertions.h>
+	<json/reader.h>
+	<json/value.h>
+	"json_tool.h"
+	<utility>
+	<cstdio>
+	<cassert>
+	<cstring>
+	<istream>
+	<sstream>
+	<memory>
+	<set>
+	<json/assertions.h>
+	<json/value.h>
+	<json/writer.h>
+	<math.h>
+	<sstream>
+	<utility>
+	<cstring>
+	<cassert>
+	<cpptl/conststring.h>
+	<cstddef>
+	<algorithm>
+	"json_valueiterator.inl"
+	<json/writer.h>
+	"json_tool.h"
+	<iomanip>
+	<memory>
+	<sstream>
+	<utility>
+	<set>
+	<cassert>
+	<cstring>
+	<cstdio>
+	<float.h>
+	<ieeefp.h>
+	<cmath>
+	<float.h>
 
