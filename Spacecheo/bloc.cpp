@@ -1,29 +1,20 @@
 #include "bloc.hpp"
+#include <iostream>
 
-Bloc::Bloc(type id, TextureHolder* textures, sf::Vector2f pos)
-: mTexture()
-, mPos(pos)
+Bloc::Bloc(Texture::ID myid, b2Body* body)
+: id(myid)
+, mBody(body)
 {
-    switch (id)
-    {
-        case Sol:
-            mTexture = &textures->get(Texture::Sol);
-            break;
-        case Mur:
-            mTexture = &textures->get(Texture::Mur);
-            break;
-        case Plateforme:
-            mTexture = &textures->get(Texture::Plateforme);
-            break;
-    }
+
 }
 
-sf::Vector2f Bloc::getPos()
+Texture::ID Bloc::getId()
 {
-    return mPos;
+    return id;
 }
 
-void Bloc::setPos(sf::Vector2f newPos)
+b2Body* Bloc::getBody()
 {
-    mPos = newPos;
+    return mBody;
 }
+

@@ -55,8 +55,11 @@
 		</Linker>
 		<Unit filename="application.cpp" />
 		<Unit filename="application.hpp" />
+		<Unit filename="bloc.cpp" />
+		<Unit filename="bloc.hpp" />
 		<Unit filename="cb.bmp" />
 		<Unit filename="cpp_std_11.hpp" />
+		<Unit filename="dynamicBloc.hpp" />
 		<Unit filename="font.cpp" />
 		<Unit filename="font.hpp" />
 		<Unit filename="gamestate.cpp" />

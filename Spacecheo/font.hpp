@@ -4,7 +4,7 @@
 
 namespace Font
 {
-    enum ID {};
+    enum ID {Text};
 }
 
 class FontHolder: public ResourceHolder<sf::Font, Font::ID>

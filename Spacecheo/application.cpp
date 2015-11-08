@@ -8,7 +8,7 @@ Application::Application(State::Context context)
 , mWindow(context.window)
 {
     registerStates();
-    mStateStack.pushState(States::Game);
+    mStateStack.pushState(States::Title);
     sf::Event event;
     mStateStack.handleEvent(event);
 }
@@ -47,7 +47,7 @@ int Application::run()
     sf::Time dt=clock.restart();
     while(!mStateStack.isEmpty())
     {
-        dt = clock.getElapsedTime();
+        dt = clock.restart();
         processInput();
         update(dt);
         render();

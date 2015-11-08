@@ -1,19 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "textureholder.hpp"
+#include <Box2D/Box2D.h>
 
 class Bloc
 {
     public:
-        enum type
-        {
-            Sol, Mur, Plateforme
-        };
-    public:
-        Bloc(type, TextureHolder*, sf::Vector2f);
-        sf::Vector2f getPos();
-        void setPos(sf::Vector2f);
-    private:
-        sf::Texture* mTexture;
-        sf::Vector2f mPos;
+        Bloc(Texture::ID, b2Body*);
+        Texture::ID getId();
+        b2Body* getBody();
+    protected:
+        Texture::ID id;
+        b2Body* mBody;
 };

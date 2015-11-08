@@ -6,7 +6,6 @@ GameState::GameState(StateStack& mystack, Context context)
 , mWorld(context.textures)
 , mPlayer(context.player)
 , mPlayerShape()
-, m_jumpTimeout(0)
 {
     mPlayerShape.setSize({40,40});
     mPlayerShape.setFillColor(sf::Color::Green);
@@ -20,45 +19,92 @@ GameState::~GameState()
 
 bool GameState::handleEvent(const sf::Event& event)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    switch (event.type)
+    {
+        case sf::Event::KeyPressed:
+            handlePlayerInput(event.key.code, true);
+            break;
+        case sf::Event::KeyReleased:
+            handlePlayerInput(event.key.code, false);
+            break;
+        default:
+            break;
+    }
+    return true;
+}
+
+void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
+{
+    if (key==sf::Keyboard::Escape && isPressed)
     {
         requestStackPop();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+    if (key==sf::Keyboard::X)
     {
-        mWorld.setForceField(true);
+        if (isPressed)
+            mWorld.setForceField(true);
+        else
+            mWorld.setForceField(false);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+    if (key==sf::Keyboard::C)
     {
-        mWorld.setForceField(false);
+        if (isPressed && !mWorld.getForceField())
+            mWorld.setDestructiveField(true);
+        else
+            mWorld.setDestructiveField(false);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if (key==sf::Keyboard::V)
     {
-        if (m_jumpTimeout == 0)
+        if (isPressed)
+            mWorld.setGravity(b2Vec2{0., -10.});
+        else
+            mWorld.setGravity(b2Vec2{0., 10.});
+    }
+    if (key==sf::Keyboard::Space && isPressed)
+    {
+        mWorld.setJump(true);
+    }
+    if (key==sf::Keyboard::Right)
+    {
+        if (isPressed)
         {
-            mWorld.setJump(!mWorld.getJump());
-            m_jumpTimeout = 15;
+            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
+            vel.x = 2.;
+            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+        }
+        else
+        {
+            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
+            vel.x = 0.;
+            mWorld.getPlayerBody()->SetLinearVelocity(vel);
         }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (key==sf::Keyboard::Left)
     {
-        b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-        vel.x = 1.;
-        mWorld.getPlayerBody()->SetLinearVelocity(vel);
+        if (isPressed)
+        {
+            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
+            vel.x = -2.;
+            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+        }
+        else
+        {
+            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
+            vel.x = 0.;
+            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+        }
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (key==sf::Keyboard::B)
     {
-        b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-        vel.x = -1.;
-        mWorld.getPlayerBody()->SetLinearVelocity(vel);
+        if (isPressed)
+        {
+            (mWorld.getPlayerBody()->GetFixtureList())->SetRestitution(1.);
+        }
+        else
+        {
+            mWorld.getPlayerBody()->GetFixtureList()->SetRestitution(0.);
+        }
     }
-    else
-    {
-        b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-        vel.x = 0.;
-        mWorld.getPlayerBody()->SetLinearVelocity(vel);
-    }
-    return true;
 }
 
 bool GameState::update(sf::Time dt)
@@ -67,14 +113,34 @@ bool GameState::update(sf::Time dt)
     b2Vec2 pos(mWorld.getPlayerBody()->GetPosition());
     sf::Vector2f siz(mPlayerShape.getSize());
     mPlayerShape.setPosition(100*pos.x-siz.x/2., 100*pos.y-siz.y/2.);
-    if (m_jumpTimeout>0)
-        m_jumpTimeout--;
     return true;
 }
 
 void GameState::draw()
 {
     mContext.window->clear();
+    std::vector<Bloc*> liste(mWorld.getListeFixBloc());
+    for (unsigned int i=0; i<liste.size(); ++i)
+    {
+        sf::Sprite sprite;
+        sprite.setTexture(mContext.textures->get(liste[i]->getId()));
+        b2Vec2 pos(liste[i]->getBody()->GetPosition());
+        float x = 100.*pos.x-50.;
+        float y = 100.*pos.y-50.;
+        sprite.setPosition(x ,y);
+        mContext.window->draw(sprite);
+    }
+    liste = (mWorld.getListeDynamicBloc());
+    for (unsigned int i=0; i<liste.size(); ++i)
+    {
+        sf::Sprite sprite;
+        sprite.setTexture(mContext.textures->get(liste[i]->getId()));
+        b2Vec2 pos(liste[i]->getBody()->GetPosition());
+        float x = 100.*pos.x-50.;
+        float y = 100.*pos.y-50.;
+        sprite.setPosition(x ,y);
+        mContext.window->draw(sprite);
+    }
     mContext.window->draw(mPlayerShape);
     mContext.window->display();
 }

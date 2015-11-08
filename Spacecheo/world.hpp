@@ -12,23 +12,28 @@ class World
         World(TextureHolder*);
         std::vector<b2Body*> getListeFixBody();
         std::vector<b2Body*> getListeDynamicBody();
-        std::vector<Bloc*> getListeBloc();
+        std::vector<Bloc*> getListeFixBloc();
+        std::vector<Bloc*> getListeDynamicBloc();
         b2Body* getPlayerBody();
         bool getForceField();
+        void setGravity(b2Vec2);
         void setForceField(bool);
+        void setDestructiveField(bool);
         void setJump(bool);
         bool getJump();
         void updateWorld();
     private:
         float distance(b2Vec2, b2Vec2);
-        void createBloc(Bloc::type, float, float);
+        void createBloc(Texture::ID, float, float);
     private:
         b2World mWorld;
         b2Body* mPlayerBody;
         std::vector<b2Body*> mListeFixBody;
         std::vector<b2Body*> mListeDynamicBody;
-        std::vector<Bloc*> mListeBloc;
+        std::vector<Bloc*> mListeFixBloc;
+        std::vector<Bloc*> mListeDynamicBloc;
         bool mForceField;
+        bool mDestructiveField;
         bool mJump;
         int mJumpTime;
         TextureHolder* mTextureHolder;
