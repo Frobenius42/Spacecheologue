@@ -611,7 +611,7 @@
 1446394697 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
 	"player.hpp"
 
-1446908409 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+1447008905 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
 	"gamestate.hpp"
 	<iostream>
 
@@ -628,10 +628,12 @@
 1446741188 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
 	"titlestate.hpp"
 
-1446907501 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+1447008858 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
 	"world.hpp"
 	<iostream>
+	<fstream>
 	<math.h>
+	"json.h"
 
 1446473785 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.cpp
 	"textureholder.hpp"
@@ -688,4 +690,30 @@
 	<ieeefp.h>
 	<cmath>
 	<float.h>
+
+1440458640 c:\users\adrien\documents\github\spacecheologue\spacecheo\json.h
+	<cpptl/config.h>
+	"config.h"
+	"forwards.h"
+	"forwards.h"
+	<string>
+	<vector>
+	<exception>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+	"features.h"
+	"value.h"
+	<deque>
+	<iosfwd>
+	<stack>
+	<string>
+	<istream>
+	"value.h"
+	<vector>
+	<string>
+	<ostream>
+	<stdlib.h>
+	<sstream>
+	"config.h"
 

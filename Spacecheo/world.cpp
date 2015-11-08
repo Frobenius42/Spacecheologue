@@ -5,7 +5,7 @@
 #include "json.h"
 
 World::World(TextureHolder* textures)
-: mWorld(b2Vec2{0.,10.})
+: mWorld(b2Vec2{0.f,10.f})
 , mPlayerBody()
 , mListeFixBody()
 , mListeDynamicBody()
@@ -20,7 +20,7 @@ World::World(TextureHolder* textures)
     b2BodyDef mBodyDef; // def du joueur
     mBodyDef.type = b2_dynamicBody; // le joueur est un corps dynamique
     mBodyDef.fixedRotation = true; // ULTRA IMPORTANT SINON LES COLLISIONS FONT ROTATER LE PLAYER !!!
-	mBodyDef.position.Set(2.5f, 3.5f);
+	mBodyDef.position.Set(2.f, 3.5f);
 
 	b2PolygonShape mBox;
 	mBox.SetAsBox(0.2f, 0.2f);
@@ -38,15 +38,7 @@ World::World(TextureHolder* textures)
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
     mTextureHolder->load(Texture::Plateforme, "graphics/bloc3.png");
 
-    createBloc(Texture::Sol, 0., 4.);
-    createBloc(Texture::Sol, 1., 4.);
-    createBloc(Texture::Sol, 2., 4.);
-    createBloc(Texture::Sol, 3., 4.);
-    createBloc(Texture::Sol, 4., 4.);
-    createBloc(Texture::Plateforme, 3.5, 3.);
-    createBloc(Texture::Plateforme, 3.5, 2.);
-    createBloc(Texture::Plateforme, 1., 3.);
-    createBloc(Texture::Plateforme, 1., 2.);
+    createWorld("test.txt", sf::Vector2f{0.f, 0.f});
 }
 
 std::vector<b2Body*> World::getListeFixBody()
@@ -76,27 +68,7 @@ b2Body* World::getPlayerBody()
 
 void World::updateWorld()
 {
-    for (b2ContactEdge* ce = mPlayerBody->GetContactList(); ce; ce = ce->next)
-    {
-        if (ce->contact->IsTouching())
-        {
-            b2Vec2 impulse(mWorld.GetGravity());
-            impulse.y = -impulse.y/100;
-            mPlayerBody->ApplyLinearImpulse(impulse, mPlayerBody->GetWorldCenter(), true);
-        }
-    }
-    for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
-    {
-        for (b2ContactEdge* ce = mListeDynamicBody[i]->GetContactList(); ce; ce = ce->next)
-        {
-            if (ce->contact->IsTouching())
-            {
-                b2Vec2 impulse(mWorld.GetGravity());
-                impulse.y = -impulse.y/100;
-                mListeDynamicBody[i]->ApplyLinearImpulse(impulse, mListeDynamicBody[i]->GetWorldCenter(), true);
-            }
-        }
-    }
+    mPlayerBody->SetAwake(true);
     if (mForceField)
     {
         for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
@@ -104,7 +76,7 @@ void World::updateWorld()
             b2Vec2 posA(mPlayerBody->GetPosition());
             b2Vec2 posB(mListeDynamicBody[i]->GetPosition());
             float dis(distance(posA, posB));
-            if (dis<2.)
+            if (dis<2.f)
             {
                 b2Vec2 impulse(posB-posA);
                 impulse.x = 10*impulse.x/dis;
@@ -120,7 +92,7 @@ void World::updateWorld()
             b2Vec2 posA(mPlayerBody->GetPosition());
             b2Vec2 posB(mListeDynamicBody[i]->GetPosition());
             float dis(distance(posA, posB));
-            if (dis<1.)
+            if (dis<1.f)
             {
                 mWorld.DestroyBody(mListeDynamicBody[i]);
                 mListeDynamicBody.erase(mListeDynamicBody.begin()+i);
@@ -159,7 +131,7 @@ void World::setDestructiveField(bool isActivated)
 
 float World::distance(b2Vec2 posA, b2Vec2 posB)
 {
-    return pow(pow((posA.x-posB.x),2)+pow((posA.y-posB.y),2),0.5);
+    return pow(pow((posA.x-posB.x),2)+pow((posA.y-posB.y),2),0.5f);
 }
 
 void World::setJump(bool jump)
@@ -190,15 +162,12 @@ void World::createBloc(Texture::ID myid, float x, float y)
     {
         blocBodyDef.type = b2_dynamicBody;
         blocBodyDef.fixedRotation = true;
-        mFixtureDef.density = 1.0f;
+        mFixtureDef.density = 100.0f;
         mFixtureDef.friction = 0.5f;
         mFixtureDef.restitution = 0.f;
 
-        b2MassData mass;
-        mass.mass = 100.;
         mBlocBody = mWorld.CreateBody(&blocBodyDef);
         mBlocBody->CreateFixture(&mFixtureDef);
-        mBlocBody->SetMassData(&mass);
         mListeDynamicBody.push_back(mBlocBody);
         Bloc* bloc = new Bloc(myid, mBlocBody);
         mListeDynamicBloc.push_back(bloc);
@@ -228,5 +197,25 @@ void World::createWorld(std::string fileName, sf::Vector2f playerPos)
     {
         std::cout << "Error while reading level file:\n" << reader.getFormattedErrorMessages();
         return;
+    }
+
+    Json::Value tile = root["tile"];
+    for (unsigned int i = 0 ; i < tile.size() ; i++)
+    {
+        for (unsigned int j = 0 ; j < tile[i].size() ; j++)
+        {
+            if (tile[i][j]=="P")
+            {
+                createBloc(Texture::Plateforme, j, i);
+            }
+            if (tile[i][j]=="S")
+            {
+                createBloc(Texture::Sol, j, i);
+            }
+            if (tile[i][j]=="M")
+            {
+                createBloc(Texture::Mur, j, i);
+            }
+        }
     }
 }

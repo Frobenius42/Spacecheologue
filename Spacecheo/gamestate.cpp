@@ -130,7 +130,7 @@ void GameState::draw()
         sprite.setPosition(x ,y);
         mContext.window->draw(sprite);
     }
-    liste = (mWorld.getListeDynamicBloc());
+    liste = mWorld.getListeDynamicBloc();
     for (unsigned int i=0; i<liste.size(); ++i)
     {
         sf::Sprite sprite;
