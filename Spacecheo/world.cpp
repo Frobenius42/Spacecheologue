@@ -3,6 +3,8 @@
 #include <fstream>
 #include <math.h>
 #include "json.h"
+#include "stonebloc.hpp"
+#include "floorbloc.hpp"
 
 World::World(TextureHolder* textures)
 : mWorld(b2Vec2{0.f,10.f})
@@ -37,7 +39,7 @@ World::World(TextureHolder* textures)
 
     mTextureHolder->load(Texture::Sol, "graphics/bloc2.png");
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
-    mTextureHolder->load(Texture::Plateforme, "graphics/bloc3.png");
+    mTextureHolder->load(Texture::Stone, "graphics/bloc3.png");
 
     createWorld("test.txt");
 }
@@ -113,6 +115,10 @@ void World::updateWorld()
     if (mJumpTime>0)
         mJumpTime--;
     mJump=false;
+    for (unsigned int i=0; i<mListeDynamicBloc.size(); ++i)
+    {
+        mListeDynamicBloc[i]->update();
+    }
 }
 
 bool World::getForceField()
@@ -156,11 +162,11 @@ void World::createBloc(Texture::ID myid, float x, float y)
     b2BodyDef blocBodyDef;
 	blocBodyDef.position.Set(x+mBlocSize, y+mBlocSize);
 	b2PolygonShape mBox;
-    mBox.SetAsBox(mBlocSize, mBlocSize);
-    b2FixtureDef mFixtureDef;
-    mFixtureDef.shape = &mBox;
-	if (myid==Texture::Plateforme)
+	if (myid==Texture::Stone)
     {
+        mBox.SetAsBox(mBlocSize-0.02, mBlocSize-0.02);
+        b2FixtureDef mFixtureDef;
+        mFixtureDef.shape = &mBox;
         blocBodyDef.type = b2_dynamicBody;
         blocBodyDef.fixedRotation = true;
         mFixtureDef.density = 100.0f;
@@ -170,15 +176,18 @@ void World::createBloc(Texture::ID myid, float x, float y)
         mBlocBody = mWorld.CreateBody(&blocBodyDef);
         mBlocBody->CreateFixture(&mFixtureDef);
         mListeDynamicBody.push_back(mBlocBody);
-        Bloc* bloc = new Bloc(myid, b2Vec2({x+mBlocSize,y+mBlocSize}));
+        StoneBloc* bloc = new StoneBloc(mBlocBody);
         mListeDynamicBloc.push_back(bloc);
     }
     else
     {
+        mBox.SetAsBox(mBlocSize, mBlocSize);
+        b2FixtureDef mFixtureDef;
+        mFixtureDef.shape = &mBox;
         mBlocBody = mWorld.CreateBody(&blocBodyDef);
         mBlocBody->CreateFixture(&mBox, 0.0f);
         mListeFixBody.push_back(mBlocBody);
-        Bloc* bloc = new Bloc(myid, b2Vec2({x+mBlocSize,y+mBlocSize}));
+        FloorBloc* bloc = new FloorBloc(b2Vec2({x+mBlocSize,y+mBlocSize}));
         mListeFixBloc.push_back(bloc);
     }
 }
@@ -208,14 +217,14 @@ void World::createWorld(std::string fileName)
         {
             if (tile[i][j]=="P")
             {
-                createBloc(Texture::Plateforme, j*2*mBlocSize, i*2*mBlocSize);
+                createBloc(Texture::Stone, j*2*mBlocSize, i*2*mBlocSize);
             }
             if (tile[i][j]=="S")
             {
                 int depart(j);
                 while (j<tile[i].size() && tile[i][j]=="S")
                 {
-                    Bloc* bloc = new Bloc(Texture::Sol, b2Vec2({j*2*mBlocSize+mBlocSize,i*2*mBlocSize+mBlocSize}));
+                    FloorBloc* bloc = new FloorBloc(b2Vec2({j*2*mBlocSize+mBlocSize,i*2*mBlocSize+mBlocSize}));
                     mListeFixBloc.push_back(bloc);
                     j++;
                 }

@@ -10,6 +10,7 @@ class Bloc
         Texture::ID getId();
         b2Vec2 getPos();
         void setPos(b2Vec2);
+        virtual void update() = 0;
     protected:
         Texture::ID id;
         b2Vec2 mPos;

@@ -417,7 +417,7 @@
 
 1446394697 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
 
-1446908305 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
+1447539705 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
 	"ressourceholder.hpp"
 	<SFML/Graphics.hpp>
 
@@ -628,12 +628,13 @@
 1446741188 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
 	"titlestate.hpp"
 
-1447535047 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+1447539881 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
 	"world.hpp"
 	<iostream>
 	<fstream>
 	<math.h>
 	"json.h"
+	"stonebloc.hpp"
 
 1446473785 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.cpp
 	"textureholder.hpp"
@@ -641,7 +642,7 @@
 1446473897 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\font.cpp
 	"font.hpp"
 
-1447534457 c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.hpp
+1447540152 c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.hpp
 	<SFML/Graphics.hpp>
 	"textureholder.hpp"
 	<Box2D/Box2D.h>
@@ -716,4 +717,16 @@
 	<stdlib.h>
 	<sstream>
 	"config.h"
+
+1447539705 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.cpp
+	"stonebloc.hpp"
+
+1447539078 c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.hpp
+	"bloc.hpp"
+
+1447540471 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\floorbloc.cpp
+	"floorbloc.hpp"
+
+1447540502 c:\users\adrien\documents\github\spacecheologue\spacecheo\floorbloc.hpp
+	"bloc.hpp"
 
