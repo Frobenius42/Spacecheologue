@@ -1,9 +1,9 @@
 #include "bloc.hpp"
 #include <iostream>
 
-Bloc::Bloc(Texture::ID myid, b2Body* body)
+Bloc::Bloc(Texture::ID myid, b2Vec2 pos)
 : id(myid)
-, mBody(body)
+, mPos(pos)
 {
 
 }
@@ -13,8 +13,8 @@ Texture::ID Bloc::getId()
     return id;
 }
 
-b2Body* Bloc::getBody()
+b2Vec2 Bloc::getPos()
 {
-    return mBody;
+    return mPos;
 }
 

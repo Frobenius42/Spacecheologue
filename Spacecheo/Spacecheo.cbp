@@ -64,6 +64,9 @@
 		<Unit filename="font.hpp" />
 		<Unit filename="gamestate.cpp" />
 		<Unit filename="gamestate.hpp" />
+		<Unit filename="json-forwards.h" />
+		<Unit filename="json.h" />
+		<Unit filename="jsoncpp.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.hpp" />
@@ -72,6 +75,7 @@
 		<Unit filename="state.hpp" />
 		<Unit filename="statestack.cpp" />
 		<Unit filename="statestack.hpp" />
+		<Unit filename="test.txt" />
 		<Unit filename="textureholder.cpp" />
 		<Unit filename="textureholder.hpp" />
 		<Unit filename="titlestate.cpp" />

@@ -23,7 +23,7 @@ class World
         void setJump(bool);
         bool getJump();
         void updateWorld();
-        void createWorld(std::string, sf::Vector2f);
+        void createWorld(std::string);
     private:
         float distance(b2Vec2, b2Vec2);
         void createBloc(Texture::ID, float, float);
@@ -39,6 +39,7 @@ class World
         bool mJump;
         int mJumpTime;
         TextureHolder* mTextureHolder;
+        float mBlocSize;
 };
 
 

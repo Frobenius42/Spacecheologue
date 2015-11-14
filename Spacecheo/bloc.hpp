@@ -6,10 +6,10 @@
 class Bloc
 {
     public:
-        Bloc(Texture::ID, b2Body*);
+        Bloc(Texture::ID, b2Vec2);
         Texture::ID getId();
-        b2Body* getBody();
+        b2Vec2 getPos();
     protected:
         Texture::ID id;
-        b2Body* mBody;
+        b2Vec2 mPos;
 };

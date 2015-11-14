@@ -124,7 +124,7 @@ void GameState::draw()
     {
         sf::Sprite sprite;
         sprite.setTexture(mContext.textures->get(liste[i]->getId()));
-        b2Vec2 pos(liste[i]->getBody()->GetPosition());
+        b2Vec2 pos(liste[i]->getPos());
         float x = 100.*pos.x-50.;
         float y = 100.*pos.y-50.;
         sprite.setPosition(x ,y);
@@ -135,7 +135,7 @@ void GameState::draw()
     {
         sf::Sprite sprite;
         sprite.setTexture(mContext.textures->get(liste[i]->getId()));
-        b2Vec2 pos(liste[i]->getBody()->GetPosition());
+        b2Vec2 pos(liste[i]->getPos());
         float x = 100.*pos.x-50.;
         float y = 100.*pos.y-50.;
         sprite.setPosition(x ,y);

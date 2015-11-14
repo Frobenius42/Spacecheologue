@@ -15,12 +15,13 @@ World::World(TextureHolder* textures)
 , mJump(false)
 , mJumpTime(0)
 , mTextureHolder(textures)
+, mBlocSize(0.5)
 {
 
     b2BodyDef mBodyDef; // def du joueur
     mBodyDef.type = b2_dynamicBody; // le joueur est un corps dynamique
     mBodyDef.fixedRotation = true; // ULTRA IMPORTANT SINON LES COLLISIONS FONT ROTATER LE PLAYER !!!
-	mBodyDef.position.Set(2.f, 3.5f);
+	mBodyDef.position.Set(0.5f, 5.5f);
 
 	b2PolygonShape mBox;
 	mBox.SetAsBox(0.2f, 0.2f);
@@ -38,7 +39,7 @@ World::World(TextureHolder* textures)
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
     mTextureHolder->load(Texture::Plateforme, "graphics/bloc3.png");
 
-    createWorld("test.txt", sf::Vector2f{0.f, 0.f});
+    createWorld("test.txt");
 }
 
 std::vector<b2Body*> World::getListeFixBody()
@@ -153,7 +154,7 @@ void World::createBloc(Texture::ID myid, float x, float y)
 {
     b2Body* mBlocBody;
     b2BodyDef blocBodyDef;
-	blocBodyDef.position.Set(x, y);
+	blocBodyDef.position.Set(x+0.5f, y+0.5f);
 	b2PolygonShape mBox;
     mBox.SetAsBox(0.5f, 0.5f);
     b2FixtureDef mFixtureDef;
@@ -169,7 +170,7 @@ void World::createBloc(Texture::ID myid, float x, float y)
         mBlocBody = mWorld.CreateBody(&blocBodyDef);
         mBlocBody->CreateFixture(&mFixtureDef);
         mListeDynamicBody.push_back(mBlocBody);
-        Bloc* bloc = new Bloc(myid, mBlocBody);
+        Bloc* bloc = new Bloc(myid, b2Vec2({x+mBlocSize,y+mBlocSize}));
         mListeDynamicBloc.push_back(bloc);
     }
     else
@@ -177,12 +178,12 @@ void World::createBloc(Texture::ID myid, float x, float y)
         mBlocBody = mWorld.CreateBody(&blocBodyDef);
         mBlocBody->CreateFixture(&mBox, 0.0f);
         mListeFixBody.push_back(mBlocBody);
-        Bloc* bloc = new Bloc(myid, mBlocBody);
+        Bloc* bloc = new Bloc(myid, b2Vec2({x+mBlocSize,y+mBlocSize}));
         mListeFixBloc.push_back(bloc);
     }
 }
 
-void World::createWorld(std::string fileName, sf::Vector2f playerPos)
+void World::createWorld(std::string fileName)
 {
     std::ifstream file(fileName.c_str());
     if (!file)
@@ -202,7 +203,8 @@ void World::createWorld(std::string fileName, sf::Vector2f playerPos)
     Json::Value tile = root["tile"];
     for (unsigned int i = 0 ; i < tile.size() ; i++)
     {
-        for (unsigned int j = 0 ; j < tile[i].size() ; j++)
+        unsigned int j(0);
+        while( j < tile[i].size())
         {
             if (tile[i][j]=="P")
             {
@@ -210,12 +212,31 @@ void World::createWorld(std::string fileName, sf::Vector2f playerPos)
             }
             if (tile[i][j]=="S")
             {
-                createBloc(Texture::Sol, j, i);
+                int depart(j);
+                while (j<tile[i].size() && tile[i][j]=="S")
+                {
+                    Bloc* bloc = new Bloc(Texture::Sol, b2Vec2({j+mBlocSize,i+mBlocSize}));
+                    mListeFixBloc.push_back(bloc);
+                    j++;
+                }
+                b2Body* mBlocBody;
+                b2BodyDef blocBodyDef;
+                std::cout<< depart << std::endl;
+                blocBodyDef.position.Set((depart+j)/2+((depart+j)%2)*0.5f, i+mBlocSize);
+                b2PolygonShape mBox;
+                mBox.SetAsBox((j-depart)*0.5f, 0.5f);
+                b2FixtureDef mFixtureDef;
+                mFixtureDef.shape = &mBox;
+                mBlocBody = mWorld.CreateBody(&blocBodyDef);
+                mBlocBody->CreateFixture(&mBox, 0.0f);
+                mListeFixBody.push_back(mBlocBody);
+                j--;
             }
             if (tile[i][j]=="M")
             {
                 createBloc(Texture::Mur, j, i);
             }
+        j++;
         }
     }
 }
