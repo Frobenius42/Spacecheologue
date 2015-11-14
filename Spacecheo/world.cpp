@@ -15,13 +15,13 @@ World::World(TextureHolder* textures)
 , mJump(false)
 , mJumpTime(0)
 , mTextureHolder(textures)
-, mBlocSize(0.5)
+, mBlocSize(0.4)
 {
 
     b2BodyDef mBodyDef; // def du joueur
     mBodyDef.type = b2_dynamicBody; // le joueur est un corps dynamique
     mBodyDef.fixedRotation = true; // ULTRA IMPORTANT SINON LES COLLISIONS FONT ROTATER LE PLAYER !!!
-	mBodyDef.position.Set(0.5f, 5.5f);
+	mBodyDef.position.Set(0.5f, 5.f);
 
 	b2PolygonShape mBox;
 	mBox.SetAsBox(0.2f, 0.2f);
@@ -154,9 +154,9 @@ void World::createBloc(Texture::ID myid, float x, float y)
 {
     b2Body* mBlocBody;
     b2BodyDef blocBodyDef;
-	blocBodyDef.position.Set(x+0.5f, y+0.5f);
+	blocBodyDef.position.Set(x+mBlocSize, y+mBlocSize);
 	b2PolygonShape mBox;
-    mBox.SetAsBox(0.5f, 0.5f);
+    mBox.SetAsBox(mBlocSize, mBlocSize);
     b2FixtureDef mFixtureDef;
     mFixtureDef.shape = &mBox;
 	if (myid==Texture::Plateforme)
@@ -208,23 +208,22 @@ void World::createWorld(std::string fileName)
         {
             if (tile[i][j]=="P")
             {
-                createBloc(Texture::Plateforme, j, i);
+                createBloc(Texture::Plateforme, j*2*mBlocSize, i*2*mBlocSize);
             }
             if (tile[i][j]=="S")
             {
                 int depart(j);
                 while (j<tile[i].size() && tile[i][j]=="S")
                 {
-                    Bloc* bloc = new Bloc(Texture::Sol, b2Vec2({j+mBlocSize,i+mBlocSize}));
+                    Bloc* bloc = new Bloc(Texture::Sol, b2Vec2({j*2*mBlocSize+mBlocSize,i*2*mBlocSize+mBlocSize}));
                     mListeFixBloc.push_back(bloc);
                     j++;
                 }
                 b2Body* mBlocBody;
                 b2BodyDef blocBodyDef;
-                std::cout<< depart << std::endl;
-                blocBodyDef.position.Set((depart+j)/2+((depart+j)%2)*0.5f, i+mBlocSize);
+                blocBodyDef.position.Set((depart+j)*2*mBlocSize/2, i*2*mBlocSize+mBlocSize);
                 b2PolygonShape mBox;
-                mBox.SetAsBox((j-depart)*0.5f, 0.5f);
+                mBox.SetAsBox((j-depart)*mBlocSize, mBlocSize);
                 b2FixtureDef mFixtureDef;
                 mFixtureDef.shape = &mBox;
                 mBlocBody = mWorld.CreateBody(&blocBodyDef);
@@ -234,9 +233,14 @@ void World::createWorld(std::string fileName)
             }
             if (tile[i][j]=="M")
             {
-                createBloc(Texture::Mur, j, i);
+                createBloc(Texture::Mur, j*2*mBlocSize, i*2*mBlocSize);
             }
         j++;
         }
     }
+}
+
+float World::getBlocSize()
+{
+    return mBlocSize;
 }

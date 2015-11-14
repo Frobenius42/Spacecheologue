@@ -118,6 +118,7 @@ bool GameState::update(sf::Time dt)
 
 void GameState::draw()
 {
+    float blocSize(mWorld.getBlocSize());
     mContext.window->clear();
     std::vector<Bloc*> liste(mWorld.getListeFixBloc());
     for (unsigned int i=0; i<liste.size(); ++i)
@@ -125,8 +126,12 @@ void GameState::draw()
         sf::Sprite sprite;
         sprite.setTexture(mContext.textures->get(liste[i]->getId()));
         b2Vec2 pos(liste[i]->getPos());
-        float x = 100.*pos.x-50.;
-        float y = 100.*pos.y-50.;
+        sf::IntRect rect;
+        rect.height = 200*blocSize;
+        rect.width = 200*blocSize;
+        sprite.setTextureRect(rect);
+        float x = 100.*(pos.x-blocSize);
+        float y = 100.*(pos.y-blocSize);
         sprite.setPosition(x ,y);
         mContext.window->draw(sprite);
     }
@@ -134,10 +139,15 @@ void GameState::draw()
     for (unsigned int i=0; i<liste.size(); ++i)
     {
         sf::Sprite sprite;
-        sprite.setTexture(mContext.textures->get(liste[i]->getId()));
+        sf::Texture texture(mContext.textures->get(liste[i]->getId()));
+        sprite.setTexture(texture);
+        sf::IntRect rect;
+        rect.height = 200*blocSize;
+        rect.width = 200*blocSize;
+        sprite.setTextureRect(rect);
         b2Vec2 pos(liste[i]->getPos());
-        float x = 100.*pos.x-50.;
-        float y = 100.*pos.y-50.;
+        float x = 100.*(pos.x-blocSize);
+        float y = 100.*(pos.y-blocSize);
         sprite.setPosition(x ,y);
         mContext.window->draw(sprite);
     }

@@ -24,6 +24,7 @@ class World
         bool getJump();
         void updateWorld();
         void createWorld(std::string);
+        float getBlocSize();
     private:
         float distance(b2Vec2, b2Vec2);
         void createBloc(Texture::ID, float, float);

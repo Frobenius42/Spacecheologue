@@ -18,3 +18,7 @@ b2Vec2 Bloc::getPos()
     return mPos;
 }
 
+void Bloc::setPos(b2Vec2 pos)
+{
+    mPos = pos;
+}
