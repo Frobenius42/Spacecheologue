@@ -6,6 +6,7 @@
 #include "bloc.hpp"
 #include "textureholder.hpp"
 #include <string>
+#include "mycontactlistener.hpp"
 
 class World
 {
@@ -41,6 +42,6 @@ class World
         int mJumpTime;
         TextureHolder* mTextureHolder;
         float mBlocSize;
+        MyContactListener* mContactListener;
 };
-
 

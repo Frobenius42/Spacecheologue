@@ -19,9 +19,14 @@ World::World(TextureHolder* textures)
 , mJumpTime(0)
 , mTextureHolder(textures)
 , mBlocSize(0.4)
+, mContactListener()
 {
     Player mPlayer(&mWorld, 0.5, 4.5);
     mPlayerBody = mPlayer.getBody();
+
+    mContactListener = new MyContactListener;
+    mWorld.SetContactListener(mContactListener);
+
     mTextureHolder->load(Texture::Sol, "graphics/bloc2.png");
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
     mTextureHolder->load(Texture::Stone, "graphics/bloc3.png");
@@ -56,6 +61,7 @@ b2Body* World::getPlayerBody()
 
 void World::updateWorld()
 {
+    std::cout << mContactListener->getNumFootContacts() << std::endl;
     mPlayerBody->SetAwake(true);
     for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
     {
@@ -86,7 +92,7 @@ void World::updateWorld()
             }
         }
     }
-    if (mJump && mJumpTime==0)
+    if (mJump && mJumpTime==0 && mContactListener->getNumFootContacts()>=1)
     {
         mPlayerBody->ApplyLinearImpulse( b2Vec2(0, -mPlayerBody->GetMass() * 5), mPlayerBody->GetWorldCenter(), true );
         mJumpTime=15;

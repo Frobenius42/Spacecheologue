@@ -21,7 +21,7 @@ Player::Player(b2World* world, float x, float y)
 	mBody = world->CreateBody(&mBodyDef);
     mBody->CreateFixture(&mFixtureDef);
 
-    mBox.SetAsBox(0.05, 0.05, b2Vec2(0,-2), 0);
+    mBox.SetAsBox(0.06, 0.06, b2Vec2(0,0.3), 0);
     mFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture = mBody->CreateFixture(&mFixtureDef);
     footSensorFixture->SetUserData( (void*)3 );
