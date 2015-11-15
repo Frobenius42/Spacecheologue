@@ -61,7 +61,6 @@ b2Body* World::getPlayerBody()
 
 void World::updateWorld()
 {
-    std::cout << mContactListener->getNumFootContacts() << std::endl;
     mPlayerBody->SetAwake(true);
     for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
     {
@@ -147,36 +146,16 @@ void World::setGravity(b2Vec2 gravity)
 
 void World::createBloc(Texture::ID myid, float x, float y)
 {
-    b2Body* mBlocBody;
-    b2BodyDef blocBodyDef;
-	blocBodyDef.position.Set(x+mBlocSize, y+mBlocSize);
-	b2PolygonShape mBox;
 	if (myid==Texture::Stone)
     {
-        mBox.SetAsBox(mBlocSize-0.02, mBlocSize-0.02);
-        b2FixtureDef mFixtureDef;
-        mFixtureDef.shape = &mBox;
-        blocBodyDef.type = b2_dynamicBody;
-        blocBodyDef.fixedRotation = true;
-        mFixtureDef.density = 100.0f;
-        mFixtureDef.friction = 0.5f;
-        mFixtureDef.restitution = 0.f;
-
-        mBlocBody = mWorld.CreateBody(&blocBodyDef);
-        mBlocBody->CreateFixture(&mFixtureDef);
-        mListeDynamicBody.push_back(mBlocBody);
-        StoneBloc* bloc = new StoneBloc(mBlocBody);
+        StoneBloc* bloc = new StoneBloc(&mWorld, b2Vec2({x+mBlocSize,y+mBlocSize}), mBlocSize);
         mListeDynamicBloc.push_back(bloc);
+        mListeDynamicBody.push_back(bloc->getBody());
     }
     else
     {
-        mBox.SetAsBox(mBlocSize, mBlocSize);
-        b2FixtureDef mFixtureDef;
-        mFixtureDef.shape = &mBox;
-        mBlocBody = mWorld.CreateBody(&blocBodyDef);
-        mBlocBody->CreateFixture(&mBox, 0.0f);
-        mListeFixBody.push_back(mBlocBody);
         FloorBloc* bloc = new FloorBloc(b2Vec2({x+mBlocSize,y+mBlocSize}));
+        mListeFixBody.push_back(bloc->getBody());
         mListeFixBloc.push_back(bloc);
     }
 }

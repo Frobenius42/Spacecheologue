@@ -4,8 +4,6 @@
 class StoneBloc: public Bloc
 {
     public:
-        StoneBloc(b2Body*);
+        StoneBloc(b2World*, b2Vec2, float);
         void update();
-    private:
-        b2Body* mBody;
 };

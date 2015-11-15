@@ -9,9 +9,11 @@ class Bloc
         Bloc(Texture::ID, b2Vec2);
         Texture::ID getId();
         b2Vec2 getPos();
+        b2Body* getBody();
         void setPos(b2Vec2);
         virtual void update() = 0;
     protected:
         Texture::ID id;
         b2Vec2 mPos;
+        b2Body* mBody;
 };
