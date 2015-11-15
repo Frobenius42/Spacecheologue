@@ -7,7 +7,7 @@ GameState::GameState(StateStack& mystack, Context context)
 , mPlayer(context.player)
 , mPlayerShape()
 {
-    mPlayerShape.setSize({40,40});
+    mPlayerShape.setSize({40,60});
     mPlayerShape.setFillColor(sf::Color::Green);
 }
 

@@ -5,6 +5,7 @@
 #include "json.h"
 #include "stonebloc.hpp"
 #include "floorbloc.hpp"
+#include "player.hpp"
 
 World::World(TextureHolder* textures)
 : mWorld(b2Vec2{0.f,10.f})
@@ -19,24 +20,8 @@ World::World(TextureHolder* textures)
 , mTextureHolder(textures)
 , mBlocSize(0.4)
 {
-
-    b2BodyDef mBodyDef; // def du joueur
-    mBodyDef.type = b2_dynamicBody; // le joueur est un corps dynamique
-    mBodyDef.fixedRotation = true; // ULTRA IMPORTANT SINON LES COLLISIONS FONT ROTATER LE PLAYER !!!
-	mBodyDef.position.Set(0.5f, 5.f);
-
-	b2PolygonShape mBox;
-	mBox.SetAsBox(0.2f, 0.2f);
-
-	b2FixtureDef mFixtureDef;
-	mFixtureDef.shape = &mBox;
-	mFixtureDef.density = 0.0f;
-	mFixtureDef.friction = 0.f;
-	mFixtureDef.restitution = 0.f;
-
-	mPlayerBody = mWorld.CreateBody(&mBodyDef);
-    mPlayerBody->CreateFixture(&mFixtureDef);
-
+    Player mPlayer(&mWorld, 0.5, 4.5);
+    mPlayerBody = mPlayer.getBody();
     mTextureHolder->load(Texture::Sol, "graphics/bloc2.png");
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
     mTextureHolder->load(Texture::Stone, "graphics/bloc3.png");
@@ -72,9 +57,10 @@ b2Body* World::getPlayerBody()
 void World::updateWorld()
 {
     mPlayerBody->SetAwake(true);
-    if (mForceField)
+    for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
     {
-        for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
+        mListeDynamicBody[i]->SetAwake(true);
+        if (mForceField)
         {
             b2Vec2 posA(mPlayerBody->GetPosition());
             b2Vec2 posB(mListeDynamicBody[i]->GetPosition());
@@ -87,10 +73,7 @@ void World::updateWorld()
                 mListeDynamicBody[i]->ApplyLinearImpulse(impulse, mListeDynamicBody[i]->GetWorldCenter(), true);
             }
         }
-    }
-    if (mDestructiveField)
-    {
-        for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
+        if (mDestructiveField)
         {
             b2Vec2 posA(mPlayerBody->GetPosition());
             b2Vec2 posB(mListeDynamicBody[i]->GetPosition());

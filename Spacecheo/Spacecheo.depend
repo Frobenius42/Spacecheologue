@@ -415,7 +415,9 @@
 	<memory>
 	<type_traits>
 
-1446394697 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
+1447611207 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
+	<Box2D/Box2D.h>
+	<SFML/System.hpp>
 
 1447539705 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
 	"ressourceholder.hpp"
@@ -608,10 +610,10 @@
 1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2wheeljoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1446394697 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
+1447611265 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
 	"player.hpp"
 
-1447535231 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+1447610989 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
 	"gamestate.hpp"
 	<iostream>
 
