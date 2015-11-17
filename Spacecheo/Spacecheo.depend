@@ -1,54 +1,29 @@
 # depslib dependency file v1.0
-1447531803 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\main.cpp
+1446741138 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\application.cpp
+	"application.hpp"
+	"titlestate.hpp"
+	"gamestate.hpp"
+	<iostream>
+
+1446396851 c:\users\adrien\documents\github\spacecheologue\spacecheo\application.hpp
+	"statestack.hpp"
+
+1446469992 c:\users\adrien\documents\github\spacecheologue\spacecheo\statestack.hpp
+	"state.hpp"
+	<map>
+	<vector>
+	"cpp_std_11.hpp"
+	<SFML/System.hpp>
+
+1446474252 c:\users\adrien\documents\github\spacecheologue\spacecheo\state.hpp
+	<map>
+	<vector>
+	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
+	"cpp_std_11.hpp"
+	"player.hpp"
 	"textureholder.hpp"
 	"font.hpp"
-	"player.hpp"
-	"state.hpp"
-	"application.hpp"
-
-1439814084 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\graphics.hpp
-	<SFML/Window.hpp>
-	<SFML/Graphics/BlendMode.hpp>
-	<SFML/Graphics/CircleShape.hpp>
-	<SFML/Graphics/Color.hpp>
-	<SFML/Graphics/ConvexShape.hpp>
-	<SFML/Graphics/Drawable.hpp>
-	<SFML/Graphics/Font.hpp>
-	<SFML/Graphics/Glyph.hpp>
-	<SFML/Graphics/Image.hpp>
-	<SFML/Graphics/PrimitiveType.hpp>
-	<SFML/Graphics/Rect.hpp>
-	<SFML/Graphics/RectangleShape.hpp>
-	<SFML/Graphics/RenderStates.hpp>
-	<SFML/Graphics/RenderTarget.hpp>
-	<SFML/Graphics/RenderTexture.hpp>
-	<SFML/Graphics/RenderWindow.hpp>
-	<SFML/Graphics/Shader.hpp>
-	<SFML/Graphics/Shape.hpp>
-	<SFML/Graphics/Sprite.hpp>
-	<SFML/Graphics/Text.hpp>
-	<SFML/Graphics/Texture.hpp>
-	<SFML/Graphics/Transform.hpp>
-	<SFML/Graphics/Transformable.hpp>
-	<SFML/Graphics/Vertex.hpp>
-	<SFML/Graphics/VertexArray.hpp>
-	<SFML/Graphics/View.hpp>
-
-1439814084 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\window.hpp
-	<SFML/System.hpp>
-	<SFML/Window/Context.hpp>
-	<SFML/Window/ContextSettings.hpp>
-	<SFML/Window/Event.hpp>
-	<SFML/Window/Joystick.hpp>
-	<SFML/Window/Keyboard.hpp>
-	<SFML/Window/Mouse.hpp>
-	<SFML/Window/Sensor.hpp>
-	<SFML/Window/Touch.hpp>
-	<SFML/Window/VideoMode.hpp>
-	<SFML/Window/Window.hpp>
-	<SFML/Window/WindowHandle.hpp>
-	<SFML/Window/WindowStyle.hpp>
 
 1439814084 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\system.hpp
 	<SFML/Config.hpp>
@@ -167,6 +142,49 @@
 	<SFML/System/Vector3.inl>
 
 1439814086 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\system\vector3.inl
+
+1439814084 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\graphics.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics/BlendMode.hpp>
+	<SFML/Graphics/CircleShape.hpp>
+	<SFML/Graphics/Color.hpp>
+	<SFML/Graphics/ConvexShape.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Font.hpp>
+	<SFML/Graphics/Glyph.hpp>
+	<SFML/Graphics/Image.hpp>
+	<SFML/Graphics/PrimitiveType.hpp>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/RectangleShape.hpp>
+	<SFML/Graphics/RenderStates.hpp>
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/Graphics/RenderTexture.hpp>
+	<SFML/Graphics/RenderWindow.hpp>
+	<SFML/Graphics/Shader.hpp>
+	<SFML/Graphics/Shape.hpp>
+	<SFML/Graphics/Sprite.hpp>
+	<SFML/Graphics/Text.hpp>
+	<SFML/Graphics/Texture.hpp>
+	<SFML/Graphics/Transform.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/Graphics/Vertex.hpp>
+	<SFML/Graphics/VertexArray.hpp>
+	<SFML/Graphics/View.hpp>
+
+1439814084 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\window.hpp
+	<SFML/System.hpp>
+	<SFML/Window/Context.hpp>
+	<SFML/Window/ContextSettings.hpp>
+	<SFML/Window/Event.hpp>
+	<SFML/Window/Joystick.hpp>
+	<SFML/Window/Keyboard.hpp>
+	<SFML/Window/Mouse.hpp>
+	<SFML/Window/Sensor.hpp>
+	<SFML/Window/Touch.hpp>
+	<SFML/Window/VideoMode.hpp>
+	<SFML/Window/Window.hpp>
+	<SFML/Window/WindowHandle.hpp>
+	<SFML/Window/WindowStyle.hpp>
 
 1439814086 c:\users\adrien\downloads\sfml-2.3.1-windows-gcc-4.8.1-tdm-32-bit\sfml-2.3.1\include\sfml\window\context.hpp
 	<SFML/Window/Export.hpp>
@@ -385,32 +403,6 @@
 	<string>
 	<vector>
 
-1446741138 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\application.cpp
-	"application.hpp"
-	"titlestate.hpp"
-	"gamestate.hpp"
-	<iostream>
-
-1446396851 c:\users\adrien\documents\github\spacecheologue\spacecheo\application.hpp
-	"statestack.hpp"
-
-1446469992 c:\users\adrien\documents\github\spacecheologue\spacecheo\statestack.hpp
-	"state.hpp"
-	<map>
-	<vector>
-	"cpp_std_11.hpp"
-	<SFML/System.hpp>
-
-1446474252 c:\users\adrien\documents\github\spacecheologue\spacecheo\state.hpp
-	<map>
-	<vector>
-	<SFML/System.hpp>
-	<SFML/Graphics.hpp>
-	"cpp_std_11.hpp"
-	"player.hpp"
-	"textureholder.hpp"
-	"font.hpp"
-
 1440256068 c:\users\adrien\documents\github\spacecheologue\spacecheo\cpp_std_11.hpp
 	<memory>
 	<type_traits>
@@ -418,36 +410,6 @@
 1447611207 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
 	<Box2D/Box2D.h>
 	<SFML/System.hpp>
-
-1447539705 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
-	"ressourceholder.hpp"
-	<SFML/Graphics.hpp>
-
-1446730926 c:\users\adrien\documents\github\spacecheologue\spacecheo\ressourceholder.hpp
-	<map>
-	"cpp_std_11.hpp"
-	<assert.h>
-
-1446740741 c:\users\adrien\documents\github\spacecheologue\spacecheo\font.hpp
-	"ressourceholder.hpp"
-	<SFML/Graphics.hpp>
-
-1446424701 c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.hpp
-	<SFML/Graphics.hpp>
-	"state.hpp"
-
-1446907783 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
-	"state.hpp"
-	"world.hpp"
-
-1447612931 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
-	<Box2D/Box2D.h>
-	<vector>
-	<SFML/Graphics.hpp>
-	"bloc.hpp"
-	"textureholder.hpp"
-	<string>
-	"mycontactlistener.hpp"
 
 1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\box2d.h
 	<Box2D/Common/b2Settings.h>
@@ -611,50 +573,56 @@
 1441269716 c:\users\adrien\documents\box2d-master\box2d-master\box2d\box2d\dynamics\joints\b2wheeljoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1447613664 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
-	"player.hpp"
+1447698649 c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.hpp
+	"ressourceholder.hpp"
+	<SFML/Graphics.hpp>
 
-1447610989 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
-	"gamestate.hpp"
-	<iostream>
-
-1446468715 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\state.cpp
-	"state.hpp"
-	"statestack.hpp"
-
-1446475773 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\statestack.cpp
-	"statestack.hpp"
-	<functional>
-	<iostream>
+1446730926 c:\users\adrien\documents\github\spacecheologue\spacecheo\ressourceholder.hpp
+	<map>
+	"cpp_std_11.hpp"
 	<assert.h>
 
-1446741188 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
-	"titlestate.hpp"
+1446740741 c:\users\adrien\documents\github\spacecheologue\spacecheo\font.hpp
+	"ressourceholder.hpp"
+	<SFML/Graphics.hpp>
 
-1447616970 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+1446424701 c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.hpp
+	<SFML/Graphics.hpp>
+	"state.hpp"
+
+1446907783 c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.hpp
+	"state.hpp"
 	"world.hpp"
-	<iostream>
-	<fstream>
-	<math.h>
-	"json.h"
-	"stonebloc.hpp"
-	"floorbloc.hpp"
-	"player.hpp"
 
-1446473785 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.cpp
+1447698260 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+	<Box2D/Box2D.h>
+	<vector>
+	<SFML/Graphics.hpp>
+	"bloc.hpp"
 	"textureholder.hpp"
-
-1446473897 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\font.cpp
-	"font.hpp"
+	<string>
+	"mycontactlistener.hpp"
 
 1447614851 c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.hpp
 	<SFML/Graphics.hpp>
 	"textureholder.hpp"
 	<Box2D/Box2D.h>
 
+1447613122 c:\users\adrien\documents\github\spacecheologue\spacecheo\mycontactlistener.hpp
+	<Box2D/Box2D.h>
+
 1447614851 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.cpp
 	"bloc.hpp"
 	<iostream>
+
+1447616304 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\floorbloc.cpp
+	"floorbloc.hpp"
+
+1447616315 c:\users\adrien\documents\github\spacecheologue\spacecheo\floorbloc.hpp
+	"bloc.hpp"
+
+1446473897 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\font.cpp
+	"font.hpp"
 
 1440458640 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\jsoncpp.cpp
 	"json/json.h"
@@ -697,6 +665,50 @@
 	<cmath>
 	<float.h>
 
+1447531803 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\main.cpp
+	<SFML/Graphics.hpp>
+	"textureholder.hpp"
+	"font.hpp"
+	"player.hpp"
+	"state.hpp"
+	"application.hpp"
+
+1447715168 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
+	"player.hpp"
+
+1446468715 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\state.cpp
+	"state.hpp"
+	"statestack.hpp"
+
+1446475773 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\statestack.cpp
+	"statestack.hpp"
+	<functional>
+	<iostream>
+	<assert.h>
+
+1447616920 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.cpp
+	"stonebloc.hpp"
+
+1447616912 c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.hpp
+	"bloc.hpp"
+
+1446473785 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\textureholder.cpp
+	"textureholder.hpp"
+
+1446741188 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
+	"titlestate.hpp"
+
+1447719738 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+	"world.hpp"
+	<iostream>
+	<fstream>
+	<math.h>
+	"json.h"
+	"stonebloc.hpp"
+	"floorbloc.hpp"
+	"halfFloorBloc.hpp"
+	"player.hpp"
+
 1440458640 c:\users\adrien\documents\github\spacecheologue\spacecheo\json.h
 	<cpptl/config.h>
 	"config.h"
@@ -723,18 +735,14 @@
 	<sstream>
 	"config.h"
 
-1447616920 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.cpp
-	"stonebloc.hpp"
+1447696683 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+	"gamestate.hpp"
+	<iostream>
 
-1447616912 c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.hpp
+1447720368 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\halffloorbloc.cpp
+	"halfFloorbloc.hpp"
+	<iostream>
+
+1447697518 c:\users\adrien\documents\github\spacecheologue\spacecheo\halffloorbloc.hpp
 	"bloc.hpp"
-
-1447616304 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\floorbloc.cpp
-	"floorbloc.hpp"
-
-1447616315 c:\users\adrien\documents\github\spacecheologue\spacecheo\floorbloc.hpp
-	"bloc.hpp"
-
-1447613122 c:\users\adrien\documents\github\spacecheologue\spacecheo\mycontactlistener.hpp
-	<Box2D/Box2D.h>
 

@@ -11,7 +11,6 @@ GameState::GameState(StateStack& mystack, Context context)
     mPlayerShape.setFillColor(sf::Color::Green);
 }
 
-
 GameState::~GameState()
 {
 

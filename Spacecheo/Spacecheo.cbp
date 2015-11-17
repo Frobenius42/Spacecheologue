@@ -70,6 +70,7 @@
 		<Unit filename="json.h" />
 		<Unit filename="jsoncpp.cpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="mycontactlistener.hpp" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.hpp" />
 		<Unit filename="ressourceholder.hpp" />

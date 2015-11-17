@@ -12,7 +12,7 @@ StoneBloc::StoneBloc(b2World* world, b2Vec2 pos, float mBlocSize)
     blocBodyDef.type = b2_dynamicBody;
     blocBodyDef.fixedRotation = true;
     mFixtureDef.density = 100.0f;
-    mFixtureDef.friction = 0.5f;
+    mFixtureDef.friction = 1.f;
     mFixtureDef.restitution = 0.f;
     mBody = world->CreateBody(&blocBodyDef);
     mBody->CreateFixture(&mFixtureDef);

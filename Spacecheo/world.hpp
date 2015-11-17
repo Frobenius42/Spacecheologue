@@ -30,7 +30,7 @@ class World
         float distance(b2Vec2, b2Vec2);
         void createBloc(Texture::ID, float, float);
     private:
-        b2World mWorld;
+        b2World* mWorld;
         b2Body* mPlayerBody;
         std::vector<b2Body*> mListeFixBody;
         std::vector<b2Body*> mListeDynamicBody;

@@ -5,10 +5,11 @@
 #include "json.h"
 #include "stonebloc.hpp"
 #include "floorbloc.hpp"
+#include "halfFloorBloc.hpp"
 #include "player.hpp"
 
 World::World(TextureHolder* textures)
-: mWorld(b2Vec2{0.f,10.f})
+: mWorld()
 , mPlayerBody()
 , mListeFixBody()
 , mListeDynamicBody()
@@ -21,16 +22,16 @@ World::World(TextureHolder* textures)
 , mBlocSize(0.4)
 , mContactListener()
 {
-    Player mPlayer(&mWorld, 0.5, 4.5);
+    mWorld = new b2World(b2Vec2{0.f,10.f});
+    Player mPlayer(mWorld, 0.5, 4.5);
     mPlayerBody = mPlayer.getBody();
 
     mContactListener = new MyContactListener;
-    mWorld.SetContactListener(mContactListener);
+    mWorld->SetContactListener(mContactListener);
 
     mTextureHolder->load(Texture::Sol, "graphics/bloc2.png");
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
     mTextureHolder->load(Texture::Stone, "graphics/bloc3.png");
-
     createWorld("test.txt");
 }
 
@@ -85,7 +86,7 @@ void World::updateWorld()
             float dis(distance(posA, posB));
             if (dis<1.f)
             {
-                mWorld.DestroyBody(mListeDynamicBody[i]);
+                mWorld->DestroyBody(mListeDynamicBody[i]);
                 mListeDynamicBody.erase(mListeDynamicBody.begin()+i);
                 mListeDynamicBloc.erase(mListeDynamicBloc.begin()+i);
             }
@@ -99,14 +100,19 @@ void World::updateWorld()
     float32 timeStep = 1.0f / 60.0f;
     int32 velocityIterations = 8;
     int32 positionIterations = 3;
-    mWorld.Step(timeStep, velocityIterations, positionIterations);
-    if (mJumpTime>0)
-        mJumpTime--;
-    mJump=false;
     for (unsigned int i=0; i<mListeDynamicBloc.size(); ++i)
     {
         mListeDynamicBloc[i]->update();
     }
+    for (unsigned int i=0; i<mListeFixBloc.size(); ++i)
+    {
+        mListeFixBloc[i]->update();
+    }
+    mWorld->Step(timeStep, velocityIterations, positionIterations);
+    if (mJumpTime>0)
+        mJumpTime--;
+    mJump=false;
+    mPlayerBody->SetGravityScale(1.);
 }
 
 bool World::getForceField()
@@ -141,16 +147,22 @@ bool World::getJump()
 
 void World::setGravity(b2Vec2 gravity)
 {
-    mWorld.SetGravity(gravity);
+    mWorld->SetGravity(gravity);
 }
 
 void World::createBloc(Texture::ID myid, float x, float y)
 {
 	if (myid==Texture::Stone)
     {
-        StoneBloc* bloc = new StoneBloc(&mWorld, b2Vec2({x+mBlocSize,y+mBlocSize}), mBlocSize);
+        StoneBloc* bloc = new StoneBloc(mWorld, b2Vec2({x+mBlocSize,y+mBlocSize}), mBlocSize);
         mListeDynamicBloc.push_back(bloc);
         mListeDynamicBody.push_back(bloc->getBody());
+    }
+    else if (myid==Texture::HalfFloor)
+    {
+        HalfFloorBloc* bloc = new HalfFloorBloc(mWorld, b2Vec2({x+mBlocSize,y+mBlocSize}), mBlocSize, 0.);
+        mListeFixBloc.push_back(bloc);
+        mListeFixBody.push_back(bloc->getBody());
     }
     else
     {
@@ -203,7 +215,7 @@ void World::createWorld(std::string fileName)
                 mBox.SetAsBox((j-depart)*mBlocSize, mBlocSize);
                 b2FixtureDef mFixtureDef;
                 mFixtureDef.shape = &mBox;
-                mBlocBody = mWorld.CreateBody(&blocBodyDef);
+                mBlocBody = mWorld->CreateBody(&blocBodyDef);
                 mBlocBody->CreateFixture(&mBox, 0.0f);
                 mListeFixBody.push_back(mBlocBody);
                 j--;
@@ -211,6 +223,10 @@ void World::createWorld(std::string fileName)
             if (tile[i][j]=="M")
             {
                 createBloc(Texture::Mur, j*2*mBlocSize, i*2*mBlocSize);
+            }
+            if (tile[i][j]=="H")
+            {
+                createBloc(Texture::HalfFloor, j*2*mBlocSize, i*2*mBlocSize);
             }
         j++;
         }
