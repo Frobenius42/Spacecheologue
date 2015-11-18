@@ -23,6 +23,9 @@ class World
         void setForceField(bool);
         void setDestructiveField(bool);
         void setJump(bool);
+        void setLeft(bool);
+        void setRight(bool);
+        void setBounce(bool);
         bool getJump();
         void updateWorld();
         void createWorld(std::string);
@@ -40,6 +43,10 @@ class World
         std::vector<Bloc*> mListeDynamicBloc;
         bool mForceField;
         bool mDestructiveField;
+        bool mRight;
+        bool mLeft;
+        bool mBounce;
+        bool mGravity;
         bool mJump;
         int mJumpTime;
         TextureHolder* mTextureHolder;

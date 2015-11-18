@@ -68,45 +68,35 @@ void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
     }
     if (key==sf::Keyboard::Right)
     {
-        mWorld.getPlayerBody()->SetAwake(true);
         if (isPressed)
         {
-            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-            vel.x = 2.;
-            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+            mWorld.setRight(true);
         }
         else
         {
-            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-            vel.x = 0.;
-            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+            mWorld.setRight(false);
         }
     }
     if (key==sf::Keyboard::Left)
     {
-        mWorld.getPlayerBody()->SetAwake(true);
         if (isPressed)
         {
-            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-            vel.x = -2.;
-            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+            mWorld.setLeft(true);
         }
         else
         {
-            b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
-            vel.x = 0.;
-            mWorld.getPlayerBody()->SetLinearVelocity(vel);
+            mWorld.setLeft(false);
         }
     }
     if (key==sf::Keyboard::B)
     {
         if (isPressed)
         {
-            (mWorld.getPlayerBody()->GetFixtureList())->SetRestitution(1.);
+            mWorld.setBounce(true);
         }
         else
         {
-            mWorld.getPlayerBody()->GetFixtureList()->SetRestitution(0.);
+            mWorld.setBounce(false);
         }
     }
 }
@@ -130,6 +120,20 @@ bool GameState::update(sf::Time dt)
         std::string ver = sv.str();
         mWorld.createWorld(hor+ver+".txt");
         *mContext.player = Player(mWorld.getWorld(), pos.x+7.95, pos.y, sf::Vector2f(X,Y));
+    }
+    if (pos.x>8)
+    {
+        sf::Vector2f POS(mPlayer->getPos());
+        int X = POS.x+1;
+        int Y = POS.y;
+        std::stringstream sh;
+        sh << X;
+        std::string hor = sh.str();
+        std::stringstream sv;
+        sv << Y;
+        std::string ver = sv.str();
+        mWorld.createWorld(hor+ver+".txt");
+        *mContext.player = Player(mWorld.getWorld(), pos.x-7.95, pos.y, sf::Vector2f(X,Y));
     }
     return true;
 }

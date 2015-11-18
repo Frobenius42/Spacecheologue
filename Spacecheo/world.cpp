@@ -16,6 +16,11 @@ World::World(TextureHolder* textures, Player* player)
 , mListeFixBloc()
 , mListeDynamicBloc()
 , mForceField(false)
+, mDestructiveField(false)
+, mRight(false)
+, mLeft(false)
+, mBounce(false)
+, mGravity(false)
 , mJump(false)
 , mJumpTime(0)
 , mTextureHolder(textures)
@@ -99,9 +104,36 @@ void World::updateWorld()
             }
         }
     }
+    if (mBounce)
+    {
+        b2Fixture* fixtureListe(mPlayerBody->GetFixtureList());
+        for(unsigned int i=0; i<4;++i)
+        {
+            fixtureListe[i].SetRestitution(1.);
+        }
+    }
+    if (mRight)
+    {
+        mPlayerBody->SetAwake(true);
+        b2Vec2 vel(mPlayerBody->GetLinearVelocity());
+        vel.x = 2.;
+        mPlayerBody->SetLinearVelocity(vel);
+    }
+    if (mLeft)
+    {
+        mPlayerBody->SetAwake(true);
+        b2Vec2 vel(mPlayerBody->GetLinearVelocity());
+        vel.x = -2.;
+        mPlayerBody->SetLinearVelocity(vel);
+    }
+    if (!mLeft && !mRight)
+    {
+        b2Vec2 vel(mPlayerBody->GetLinearVelocity());
+        vel.x = 0.;
+        mPlayerBody->SetLinearVelocity(vel);
+    }
     if (mJump && mJumpTime==0 && mContactListener->getNumFootContacts()>=1)
     {
-        std::cout << "bob";
         mPlayerBody->SetAwake(true);
         mPlayerBody->ApplyLinearImpulse( b2Vec2(0, -mPlayerBody->GetMass() * 5), mPlayerBody->GetWorldCenter(), true );
         mJumpTime=15;
@@ -255,4 +287,19 @@ float World::getBlocSize()
 b2World* World::getWorld()
 {
     return mWorld;
+}
+
+void World::setBounce(bool bo)
+{
+    mBounce = bo;
+}
+
+void World::setRight(bool bo)
+{
+    mRight = bo;
+}
+
+void World::setLeft(bool bo)
+{
+    mLeft = bo;
 }
