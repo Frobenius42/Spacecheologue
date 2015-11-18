@@ -33,5 +33,5 @@ class MyContactListener : public b2ContactListener
             return mNumFootContacts;
         }
     private:
-        int mNumFootContacts;
+        int mNumFootContacts = 0;
 };

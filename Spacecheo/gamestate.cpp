@@ -1,9 +1,11 @@
 #include "gamestate.hpp"
 #include <iostream>
+#include <sstream>
+#include <string>
 
 GameState::GameState(StateStack& mystack, Context context)
 : State(mystack, context)
-, mWorld(context.textures)
+, mWorld(context.textures, context.player)
 , mPlayer(context.player)
 , mPlayerShape()
 {
@@ -54,6 +56,7 @@ void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
     }
     if (key==sf::Keyboard::V)
     {
+        mWorld.getPlayerBody()->SetAwake(true);
         if (isPressed)
             mWorld.setGravity(b2Vec2{0., -10.});
         else
@@ -65,6 +68,7 @@ void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
     }
     if (key==sf::Keyboard::Right)
     {
+        mWorld.getPlayerBody()->SetAwake(true);
         if (isPressed)
         {
             b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
@@ -80,6 +84,7 @@ void GameState::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
     }
     if (key==sf::Keyboard::Left)
     {
+        mWorld.getPlayerBody()->SetAwake(true);
         if (isPressed)
         {
             b2Vec2 vel(mWorld.getPlayerBody()->GetLinearVelocity());
@@ -112,6 +117,20 @@ bool GameState::update(sf::Time dt)
     b2Vec2 pos(mWorld.getPlayerBody()->GetPosition());
     sf::Vector2f siz(mPlayerShape.getSize());
     mPlayerShape.setPosition(100*pos.x-siz.x/2., 100*pos.y-siz.y/2.);
+    if (pos.x<0)
+    {
+        sf::Vector2f POS(mPlayer->getPos());
+        int X = POS.x-1;
+        int Y = POS.y;
+        std::stringstream sh;
+        sh << X;
+        std::string hor = sh.str();
+        std::stringstream sv;
+        sv << Y;
+        std::string ver = sv.str();
+        mWorld.createWorld(hor+ver+".txt");
+        *mContext.player = Player(mWorld.getWorld(), pos.x+7.95, pos.y, sf::Vector2f(X,Y));
+    }
     return true;
 }
 

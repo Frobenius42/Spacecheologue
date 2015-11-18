@@ -407,7 +407,7 @@
 	<memory>
 	<type_traits>
 
-1447611207 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
+1447833926 c:\users\adrien\documents\github\spacecheologue\spacecheo\player.hpp
 	<Box2D/Box2D.h>
 	<SFML/System.hpp>
 
@@ -594,7 +594,8 @@
 	"state.hpp"
 	"world.hpp"
 
-1447698260 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+1447835300 c:\users\adrien\documents\github\spacecheologue\spacecheo\world.hpp
+	"player.hpp"
 	<Box2D/Box2D.h>
 	<vector>
 	<SFML/Graphics.hpp>
@@ -608,7 +609,7 @@
 	"textureholder.hpp"
 	<Box2D/Box2D.h>
 
-1447613122 c:\users\adrien\documents\github\spacecheologue\spacecheo\mycontactlistener.hpp
+1447780165 c:\users\adrien\documents\github\spacecheologue\spacecheo\mycontactlistener.hpp
 	<Box2D/Box2D.h>
 
 1447614851 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\bloc.cpp
@@ -673,8 +674,9 @@
 	"state.hpp"
 	"application.hpp"
 
-1447715168 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
+1447833566 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\player.cpp
 	"player.hpp"
+	<iostream>
 
 1446468715 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\state.cpp
 	"state.hpp"
@@ -686,7 +688,7 @@
 	<iostream>
 	<assert.h>
 
-1447616920 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.cpp
+1447720436 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.cpp
 	"stonebloc.hpp"
 
 1447616912 c:\users\adrien\documents\github\spacecheologue\spacecheo\stonebloc.hpp
@@ -698,7 +700,7 @@
 1446741188 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\titlestate.cpp
 	"titlestate.hpp"
 
-1447719738 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
+1447834165 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\world.cpp
 	"world.hpp"
 	<iostream>
 	<fstream>
@@ -735,14 +737,16 @@
 	<sstream>
 	"config.h"
 
-1447696683 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
+1447835791 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\gamestate.cpp
 	"gamestate.hpp"
 	<iostream>
+	<sstream>
+	<string>
 
-1447720368 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\halffloorbloc.cpp
+1447776067 source:c:\users\adrien\documents\github\spacecheologue\spacecheo\halffloorbloc.cpp
 	"halfFloorbloc.hpp"
 	<iostream>
 
-1447697518 c:\users\adrien\documents\github\spacecheologue\spacecheo\halffloorbloc.hpp
+1447756741 c:\users\adrien\documents\github\spacecheologue\spacecheo\halffloorbloc.hpp
 	"bloc.hpp"
 

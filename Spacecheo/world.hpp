@@ -1,5 +1,6 @@
 #pragma once
 
+#include "player.hpp"
 #include <Box2D/Box2D.h>
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -11,7 +12,7 @@
 class World
 {
     public:
-        World(TextureHolder*);
+        World(TextureHolder*, Player*);
         std::vector<b2Body*> getListeFixBody();
         std::vector<b2Body*> getListeDynamicBody();
         std::vector<Bloc*> getListeFixBloc();
@@ -26,12 +27,13 @@ class World
         void updateWorld();
         void createWorld(std::string);
         float getBlocSize();
+        b2World* getWorld();
     private:
         float distance(b2Vec2, b2Vec2);
         void createBloc(Texture::ID, float, float);
     private:
         b2World* mWorld;
-        b2Body* mPlayerBody;
+        Player* mPlayer;
         std::vector<b2Body*> mListeFixBody;
         std::vector<b2Body*> mListeDynamicBody;
         std::vector<Bloc*> mListeFixBloc;

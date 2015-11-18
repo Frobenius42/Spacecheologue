@@ -1,7 +1,8 @@
 #include "player.hpp"
+#include <iostream>
 
-Player::Player(b2World* world, float x, float y)
-: mPos()
+Player::Player(b2World* world, float x, float y, sf::Vector2f POS)
+: mPos(POS)
 , mBody()
 {
     b2BodyDef mBodyDef; // def du joueur
@@ -21,7 +22,7 @@ Player::Player(b2World* world, float x, float y)
 	mBody = world->CreateBody(&mBodyDef);
     mBody->CreateFixture(&mFixtureDef);
 
-    mBox.SetAsBox(0.06, 0.06, b2Vec2(0,0.3), 0);
+    mBox.SetAsBox(0.06, 0.2, b2Vec2(0,0.3), 0);
     mFixtureDef.isSensor = true;
     b2Fixture* footSensorFixture = mBody->CreateFixture(&mFixtureDef);
     footSensorFixture->SetUserData( (void*)3 );
@@ -42,4 +43,9 @@ b2Body* Player::getBody()
 sf::Vector2f Player::getPos()
 {
     return mPos;
+}
+
+void Player::setPos(sf::Vector2f pos)
+{
+    mPos = pos;
 }

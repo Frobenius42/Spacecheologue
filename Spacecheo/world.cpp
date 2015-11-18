@@ -8,9 +8,9 @@
 #include "halfFloorBloc.hpp"
 #include "player.hpp"
 
-World::World(TextureHolder* textures)
+World::World(TextureHolder* textures, Player* player)
 : mWorld()
-, mPlayerBody()
+, mPlayer(player)
 , mListeFixBody()
 , mListeDynamicBody()
 , mListeFixBloc()
@@ -22,17 +22,16 @@ World::World(TextureHolder* textures)
 , mBlocSize(0.4)
 , mContactListener()
 {
-    mWorld = new b2World(b2Vec2{0.f,10.f});
-    Player mPlayer(mWorld, 0.5, 4.5);
-    mPlayerBody = mPlayer.getBody();
-
-    mContactListener = new MyContactListener;
-    mWorld->SetContactListener(mContactListener);
-
     mTextureHolder->load(Texture::Sol, "graphics/bloc2.png");
     mTextureHolder->load(Texture::Mur, "graphics/bloc1.png");
     mTextureHolder->load(Texture::Stone, "graphics/bloc3.png");
-    createWorld("test.txt");
+    mTextureHolder->load(Texture::HalfFloor, "graphics/halfbloc1.png");
+
+    mWorld = new b2World(b2Vec2{0.f,10.f});
+    mContactListener = new MyContactListener();
+    mWorld->SetContactListener(mContactListener);
+    *mPlayer = Player(mWorld, 0.5, 4.5, sf::Vector2f(2, 2));
+    createWorld("22.txt");
 }
 
 std::vector<b2Body*> World::getListeFixBody()
@@ -57,12 +56,20 @@ std::vector<Bloc*> World::getListeDynamicBloc()
 
 b2Body* World::getPlayerBody()
 {
-    return mPlayerBody;
+    return mPlayer->getBody();
 }
 
 void World::updateWorld()
 {
-    mPlayerBody->SetAwake(true);
+    b2Body* mPlayerBody = mPlayer->getBody();
+    for (unsigned int i=0; i<mListeDynamicBloc.size(); ++i)
+    {
+        mListeDynamicBloc[i]->update();
+    }
+    for (unsigned int i=0; i<mListeFixBloc.size(); ++i)
+    {
+        mListeFixBloc[i]->update();
+    }
     for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
     {
         mListeDynamicBody[i]->SetAwake(true);
@@ -74,8 +81,8 @@ void World::updateWorld()
             if (dis<2.f)
             {
                 b2Vec2 impulse(posB-posA);
-                impulse.x = 10*impulse.x/dis;
-                impulse.y = 10*impulse.y/dis;
+                impulse.x = 20*impulse.x/dis;
+                impulse.y = 20*impulse.y/dis;
                 mListeDynamicBody[i]->ApplyLinearImpulse(impulse, mListeDynamicBody[i]->GetWorldCenter(), true);
             }
         }
@@ -94,25 +101,18 @@ void World::updateWorld()
     }
     if (mJump && mJumpTime==0 && mContactListener->getNumFootContacts()>=1)
     {
+        std::cout << "bob";
+        mPlayerBody->SetAwake(true);
         mPlayerBody->ApplyLinearImpulse( b2Vec2(0, -mPlayerBody->GetMass() * 5), mPlayerBody->GetWorldCenter(), true );
         mJumpTime=15;
     }
     float32 timeStep = 1.0f / 60.0f;
     int32 velocityIterations = 8;
     int32 positionIterations = 3;
-    for (unsigned int i=0; i<mListeDynamicBloc.size(); ++i)
-    {
-        mListeDynamicBloc[i]->update();
-    }
-    for (unsigned int i=0; i<mListeFixBloc.size(); ++i)
-    {
-        mListeFixBloc[i]->update();
-    }
     mWorld->Step(timeStep, velocityIterations, positionIterations);
     if (mJumpTime>0)
         mJumpTime--;
     mJump=false;
-    mPlayerBody->SetGravityScale(1.);
 }
 
 bool World::getForceField()
@@ -174,6 +174,20 @@ void World::createBloc(Texture::ID myid, float x, float y)
 
 void World::createWorld(std::string fileName)
 {
+    //destruction du monde précédent
+    for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
+    {
+        mWorld->DestroyBody(mListeDynamicBody[i]);
+    }
+    for (unsigned int i=0; i<mListeFixBody.size(); ++i)
+    {
+        mWorld->DestroyBody(mListeFixBody[i]);
+    }
+    mListeDynamicBloc.clear();
+    mListeDynamicBody.clear();
+    mListeFixBloc.clear();
+    mListeFixBody.clear();
+
     std::ifstream file(fileName.c_str());
     if (!file)
     {
@@ -236,4 +250,9 @@ void World::createWorld(std::string fileName)
 float World::getBlocSize()
 {
     return mBlocSize;
+}
+
+b2World* World::getWorld()
+{
+    return mWorld;
 }

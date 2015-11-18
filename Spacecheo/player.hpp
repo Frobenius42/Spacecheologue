@@ -5,10 +5,11 @@
 class Player
 {
     public:
-        Player(b2World*,float ,float);
+        Player(b2World*,float ,float, sf::Vector2f);
         Player();
         b2Body* getBody();
         sf::Vector2f getPos();
+        void setPos(sf::Vector2f);
     private:
         sf::Vector2f mPos;
         b2Body* mBody;

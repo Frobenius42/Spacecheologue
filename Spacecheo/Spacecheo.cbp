@@ -53,6 +53,8 @@
 			<Add library="C:\Users\Adrien\Documents\GitHub\Spacecheologue\Spacecheo\libBox2D.a" />
 			<Add directory="C:/Users/Adrien/Downloads/SFML-2.3.1-windows-gcc-4.8.1-tdm-32-bit/SFML-2.3.1/lib" />
 		</Linker>
+		<Unit filename="12.txt" />
+		<Unit filename="22.txt" />
 		<Unit filename="application.cpp" />
 		<Unit filename="application.hpp" />
 		<Unit filename="bloc.cpp" />
@@ -66,6 +68,8 @@
 		<Unit filename="font.hpp" />
 		<Unit filename="gamestate.cpp" />
 		<Unit filename="gamestate.hpp" />
+		<Unit filename="halfFloorBloc.hpp" />
+		<Unit filename="halffloorbloc.cpp" />
 		<Unit filename="json-forwards.h" />
 		<Unit filename="json.h" />
 		<Unit filename="jsoncpp.cpp" />
@@ -80,7 +84,6 @@
 		<Unit filename="statestack.hpp" />
 		<Unit filename="stonebloc.cpp" />
 		<Unit filename="stonebloc.hpp" />
-		<Unit filename="test.txt" />
 		<Unit filename="textureholder.cpp" />
 		<Unit filename="textureholder.hpp" />
 		<Unit filename="titlestate.cpp" />

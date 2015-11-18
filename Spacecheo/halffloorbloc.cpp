@@ -2,7 +2,8 @@
 #include <iostream>
 
 HalfFloorBloc::HalfFloorBloc(b2World* world, b2Vec2 pos,float mBlocSize, float rotation)
-: Bloc(Texture::Mur, pos)
+: Bloc(Texture::HalfFloor, pos)
+, mTimer(0)
 {
     b2BodyDef blocBodyDef;
     blocBodyDef.position.Set(pos.x, pos.y);
@@ -23,10 +24,12 @@ void HalfFloorBloc::update()
     b2ContactEdge* contactList(mBody->GetContactList());
     for (b2ContactEdge* ce = contactList; ce; ce = ce->next)
     {
-        if (ce->contact->IsTouching())
+        if (ce->contact->IsTouching() && mTimer>15)
         {
-            b2Body* bodyA = ce->other;
-            bodyA->SetGravityScale(0.0);
+            b2Body* bodyA(ce->other);
+            bodyA->SetAwake(false);
+            mTimer = 0;
         }
     }
+    mTimer++;
 }
