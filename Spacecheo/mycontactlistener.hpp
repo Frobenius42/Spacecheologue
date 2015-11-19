@@ -28,6 +28,10 @@ class MyContactListener : public b2ContactListener
                 mNumFootContacts--;
         }
 
+        void setNumFootContacts(int n)
+        {
+            mNumFootContacts = n;
+        }
         int getNumFootContacts()
         {
             return mNumFootContacts;

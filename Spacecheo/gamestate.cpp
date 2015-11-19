@@ -110,6 +110,7 @@ bool GameState::update(sf::Time dt)
     if (pos.x<0)
     {
         sf::Vector2f POS(mPlayer->getPos());
+        b2Vec2 vel(mPlayer->getBody()->GetLinearVelocity());
         int X = POS.x-1;
         int Y = POS.y;
         std::stringstream sh;
@@ -120,10 +121,12 @@ bool GameState::update(sf::Time dt)
         std::string ver = sv.str();
         mWorld.createWorld(hor+ver+".txt");
         *mContext.player = Player(mWorld.getWorld(), pos.x+7.95, pos.y, sf::Vector2f(X,Y));
+        mPlayer->getBody()->SetLinearVelocity(vel);
     }
     if (pos.x>8)
     {
         sf::Vector2f POS(mPlayer->getPos());
+        b2Vec2 vel(mPlayer->getBody()->GetLinearVelocity());
         int X = POS.x+1;
         int Y = POS.y;
         std::stringstream sh;
@@ -134,6 +137,39 @@ bool GameState::update(sf::Time dt)
         std::string ver = sv.str();
         mWorld.createWorld(hor+ver+".txt");
         *mContext.player = Player(mWorld.getWorld(), pos.x-7.95, pos.y, sf::Vector2f(X,Y));
+        mPlayer->getBody()->SetLinearVelocity(vel);
+    }
+    if (pos.y<0)
+    {
+        sf::Vector2f POS(mPlayer->getPos());
+        b2Vec2 vel(mPlayer->getBody()->GetLinearVelocity());
+        int X = POS.x;
+        int Y = POS.y+1;
+        std::stringstream sh;
+        sh << X;
+        std::string hor = sh.str();
+        std::stringstream sv;
+        sv << Y;
+        std::string ver = sv.str();
+        mWorld.createWorld(hor+ver+".txt");
+        *mContext.player = Player(mWorld.getWorld(), pos.x, pos.y+6.45, sf::Vector2f(X,Y));
+        mPlayer->getBody()->SetLinearVelocity(vel);
+    }
+    if (pos.y>6.5)
+    {
+        sf::Vector2f POS(mPlayer->getPos());
+        b2Vec2 vel(mPlayer->getBody()->GetLinearVelocity());
+        int X = POS.x;
+        int Y = POS.y-1;
+        std::stringstream sh;
+        sh << X;
+        std::string hor = sh.str();
+        std::stringstream sv;
+        sv << Y;
+        std::string ver = sv.str();
+        mWorld.createWorld(hor+ver+".txt");
+        *mContext.player = Player(mWorld.getWorld(), pos.x, pos.y-6.45, sf::Vector2f(X,Y));
+        mPlayer->getBody()->SetLinearVelocity(vel);
     }
     return true;
 }

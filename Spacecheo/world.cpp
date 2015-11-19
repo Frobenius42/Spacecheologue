@@ -35,8 +35,9 @@ World::World(TextureHolder* textures, Player* player)
     mWorld = new b2World(b2Vec2{0.f,10.f});
     mContactListener = new MyContactListener();
     mWorld->SetContactListener(mContactListener);
-    *mPlayer = Player(mWorld, 0.5, 4.5, sf::Vector2f(2, 2));
-    createWorld("22.txt");
+    createWorld("23.txt");
+    *mPlayer = Player(mWorld, 0.5, 4.5, sf::Vector2f(2, 3));
+
 }
 
 std::vector<b2Body*> World::getListeFixBody()
@@ -66,6 +67,7 @@ b2Body* World::getPlayerBody()
 
 void World::updateWorld()
 {
+    std::cout << mContactListener->getNumFootContacts() << std::endl;
     b2Body* mPlayerBody = mPlayer->getBody();
     for (unsigned int i=0; i<mListeDynamicBloc.size(); ++i)
     {
@@ -143,7 +145,10 @@ void World::updateWorld()
     int32 positionIterations = 3;
     mWorld->Step(timeStep, velocityIterations, positionIterations);
     if (mJumpTime>0)
+    {
+        mPlayerBody->SetAwake(true);
         mJumpTime--;
+    }
     mJump=false;
 }
 
@@ -207,18 +212,22 @@ void World::createBloc(Texture::ID myid, float x, float y)
 void World::createWorld(std::string fileName)
 {
     //destruction du monde précédent
-    for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
+    mWorld->~b2World();
+    /*for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
     {
         mWorld->DestroyBody(mListeDynamicBody[i]);
     }
     for (unsigned int i=0; i<mListeFixBody.size(); ++i)
     {
         mWorld->DestroyBody(mListeFixBody[i]);
-    }
+    }*/
     mListeDynamicBloc.clear();
     mListeDynamicBody.clear();
     mListeFixBloc.clear();
     mListeFixBody.clear();
+    mWorld = new b2World(b2Vec2{0.f,10.f});
+    mWorld->SetContactListener(mContactListener);
+    mContactListener->setNumFootContacts(0);
 
     std::ifstream file(fileName.c_str());
     if (!file)
