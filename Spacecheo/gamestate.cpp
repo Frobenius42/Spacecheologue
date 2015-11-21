@@ -200,8 +200,8 @@ void GameState::draw()
         sf::Texture texture(mContext.textures->get(liste[i]->getId()));
         sprite.setTexture(texture);
         sf::IntRect rect;
-        rect.height = 200*blocSize;
-        rect.width = 200*blocSize;
+        rect.height = 200*(blocSize);
+        rect.width = 200*(blocSize);
         sprite.setTextureRect(rect);
         b2Vec2 pos(liste[i]->getPos());
         float x = 100.*(pos.x-blocSize);

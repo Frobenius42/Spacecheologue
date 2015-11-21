@@ -35,8 +35,8 @@ World::World(TextureHolder* textures, Player* player)
     mWorld = new b2World(b2Vec2{0.f,10.f});
     mContactListener = new MyContactListener();
     mWorld->SetContactListener(mContactListener);
-    createWorld("23.txt");
-    *mPlayer = Player(mWorld, 0.5, 4.5, sf::Vector2f(2, 3));
+    createWorld("96.txt");
+    *mPlayer = Player(mWorld, 4.5, 4.5, sf::Vector2f(9, 6));
 
 }
 
@@ -67,7 +67,6 @@ b2Body* World::getPlayerBody()
 
 void World::updateWorld()
 {
-    std::cout << mContactListener->getNumFootContacts() << std::endl;
     b2Body* mPlayerBody = mPlayer->getBody();
     for (unsigned int i=0; i<mListeDynamicBloc.size(); ++i)
     {
@@ -84,12 +83,16 @@ void World::updateWorld()
         {
             b2Vec2 posA(mPlayerBody->GetPosition());
             b2Vec2 posB(mListeDynamicBody[i]->GetPosition());
-            float dis(distance(posA, posB));
-            if (dis<2.f)
+            float distanceH((posB.x-posA.x));
+            float distanceV((posB.y-posA.y));
+            if (distanceH<2.f && distanceH>-2.f && distanceV<mBlocSize && distanceV>-mBlocSize)
             {
-                b2Vec2 impulse(posB-posA);
-                impulse.x = 20*impulse.x/dis;
-                impulse.y = 20*impulse.y/dis;
+                b2Vec2 impulse;
+                if (distanceH<0.f)
+                    impulse.x = -6.f;
+                else
+                    impulse.x = 6.f;
+                impulse.y = 0.f;
                 mListeDynamicBody[i]->ApplyLinearImpulse(impulse, mListeDynamicBody[i]->GetWorldCenter(), true);
             }
         }
@@ -105,6 +108,7 @@ void World::updateWorld()
                 mListeDynamicBloc.erase(mListeDynamicBloc.begin()+i);
             }
         }
+        mListeDynamicBody[i]->SetAwake(true);
     }
     if (mBounce)
     {
@@ -213,14 +217,6 @@ void World::createWorld(std::string fileName)
 {
     //destruction du monde précédent
     mWorld->~b2World();
-    /*for (unsigned int i=0; i<mListeDynamicBody.size(); ++i)
-    {
-        mWorld->DestroyBody(mListeDynamicBody[i]);
-    }
-    for (unsigned int i=0; i<mListeFixBody.size(); ++i)
-    {
-        mWorld->DestroyBody(mListeFixBody[i]);
-    }*/
     mListeDynamicBloc.clear();
     mListeDynamicBody.clear();
     mListeFixBloc.clear();
